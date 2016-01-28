@@ -1,0 +1,11 @@
+﻿  window.cpp
+  logger.cpp
+  sandbox.cpp
+  vec4.cpp
+  vec3.cpp
+  vec2.cpp
+  mat4.cpp
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  core.vcxproj -> C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\\bin\Debug\core.exe
+  core.vcxproj -> C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\\bin\Debug\core.pdb (Partial PDB)
