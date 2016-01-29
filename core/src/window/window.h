@@ -1,18 +1,30 @@
 #pragma once
 
-class Window {
+#include <glew.h>
+#include <glfw3.h>
 
-private:
-	GLFWwindow *window;
-	const char *m_name;
-	const size_t m_Width, m_Height;
+namespace core {
+	class Window {
 
-public:
-	Window(const char *name, size_t width, size_t height);
-	~Window();
-	void update() const;
+	private:
+		GLFWwindow *m_Window;
+		const char *m_Title;
+		const size_t m_Width, m_Height;
 
-private:
-	void init();
+	public:
+		Window(const char *title, size_t width, size_t height);
+		~Window();
+		void update() const;
+		void close() const;
 
-};
+		void makeCurrent() const;
+		void setVSync(bool vSync) const;
+
+		bool closed() const;
+
+	private:
+		void init();
+
+		friend void error_callback(int error, const char *description);
+	};
+}
