@@ -1,10 +1,5 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : Access to the path 'c:\users\pedro admin\documents\visual studio 2015\projects\ndengine\bin\debug\core.exe' is denied.
-  window.cpp
-  logger.cpp
-  sandbox.cpp
-  vec4.cpp
-  vec3.cpp
-  vec2.cpp
-  mat4.cpp
-  Generating Code...
-LINK : fatal error LNK1104: cannot open file 'C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\\bin\Debug\core.exe'
+﻿  sandbox.cpp
+c:\users\pedro admin\documents\visual studio 2015\projects\ndengine\core\src\sandbox.cpp(13): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+c:\users\pedro admin\documents\visual studio 2015\projects\ndengine\core\src\sandbox.cpp(17): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  core.vcxproj -> C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\\bin\Debug\core.exe
+  core.vcxproj -> C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\\bin\Debug\core.pdb (Partial PDB)

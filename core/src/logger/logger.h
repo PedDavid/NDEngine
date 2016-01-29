@@ -7,4 +7,5 @@ namespace core {	namespace logger {
 
 	void logMessage(LogLevel logLevel, const char *message);
 	void setLogLevel(LogLevel logLevel);
+	void glCheckError(const char *stmt, const char *file, int line, const char *funtion);
 }}

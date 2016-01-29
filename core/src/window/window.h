@@ -15,6 +15,7 @@ namespace core {
 		Window(const char *title, size_t width, size_t height);
 		~Window();
 		void update() const;
+		void clear() const;
 		void close() const;
 
 		void makeCurrent() const;
