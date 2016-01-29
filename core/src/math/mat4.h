@@ -3,9 +3,9 @@
 #include "vec3.h"
 #include "vec4.h"
 
-namespace math{
-	struct mat4{
-		union{
+namespace core {	namespace math {
+	struct mat4 {
+		union {
 			float elements[4 * 4];
 			vec4 columns[4];
 			struct
@@ -48,4 +48,4 @@ namespace math{
 
 		friend std::ostream& operator<<(std::ostream& stream, const mat4& matrix);
 	};
-}
+}}

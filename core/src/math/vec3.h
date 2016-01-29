@@ -1,7 +1,7 @@
 #pragma once
 
-namespace math{
-	struct vec3{
+namespace core {	namespace math {
+	struct vec3 {
 		float x, y, z;
 
 		vec3() = default;
@@ -31,4 +31,4 @@ namespace math{
 
 		friend std::ostream &operator<<(std::ostream &stream, const vec3 &vector);
 	};
-}
+}}

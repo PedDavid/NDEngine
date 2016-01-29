@@ -6,7 +6,7 @@
 #	include <Windows.h>
 #endif
 
-namespace util {
+namespace core {	namespace logger {
 
 #ifdef _WIN32
 	static HANDLE m_consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -14,9 +14,9 @@ namespace util {
 
 	static LogLevel m_logLevel = Success;
 
-	void log_message(LogLevel logLevel, const char *message) {
+	void logMessage(LogLevel logLevel, const char *message) {
 #ifdef _WIN32
-		if (m_logLevel & logLevel) {
+		if (logLevel >= m_logLevel) {
 			switch (logLevel) {
 			case Fatal:
 				SetConsoleTextAttribute(m_consoleHandle, BACKGROUND_RED | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
@@ -36,4 +36,8 @@ namespace util {
 		}
 #endif
 	}
-}
+
+	void setLogLevel(LogLevel logLevel) {
+		m_logLevel = logLevel;
+	}
+}}

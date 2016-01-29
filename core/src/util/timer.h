@@ -2,7 +2,7 @@
 
 #include <chrono>
 
-namespace util {
+namespace core {	namespace timer {
 	class Timer {
 
 	private:
@@ -23,4 +23,4 @@ namespace util {
 			return std::chrono::duration_cast<milliseconds_type>(hrClock::now() - m_Start).count() / 1000.0f;
 		}
 	};
-}
+}}

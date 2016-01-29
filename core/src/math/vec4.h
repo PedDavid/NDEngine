@@ -1,12 +1,12 @@
 #pragma once
 
-namespace math{
-	struct vec4{
+namespace core {	namespace math {
+	struct vec4 {
 		float x, y, z, w;
 
 		vec4() = default;
 		vec4(float x, float y, float z, float w);
-				 
+
 		vec4 &add(const vec4 &other);
 		vec4 &subtract(const vec4 &other);
 		vec4 &multiply(const vec4 &other);
@@ -31,4 +31,4 @@ namespace math{
 
 		friend std::ostream &operator<<(std::ostream &stream, const vec4 &vector);
 	};
-}
+}}
