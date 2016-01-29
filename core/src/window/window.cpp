@@ -1,8 +1,3 @@
-
-//#include <glfw3.h>
-
-#include <iostream>
-
 #include "window.h"
 #include "..\logger\log.h"
 
@@ -19,6 +14,7 @@ namespace core {
 			glfwTerminate();
 		}
 		glfwSetWindowUserPointer(m_Window, this);
+		makeCurrent();
 		//glfwSetFramebufferSizeCallback(m_Window, window_resize);
 		//glfwSetKeyCallback(m_Window, key_callback);
 		//glfwSetMouseButtonCallback(m_Window, mouse_button_callback);
@@ -29,6 +25,7 @@ namespace core {
 		if (glewInit() != GLEW_OK) {
 			LOG_FATAL("[GLEW] INIT");
 			glfwTerminate();
+			return;
 		}
 
 		glEnable(GL_BLEND);
@@ -37,8 +34,8 @@ namespace core {
 		glEnable(GL_DEPTH_TEST);
 
 		LOG_SUCCESS("[GLEW] INIT");
-		std::cout << std::string("[OpenGL] v") << (char*)glGetString(GL_VERSION) << std::endl;
-		std::cout << std::string("[GLSL] v") << (char*)glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+		//std::cout << std::string("[OpenGL] v") << (char*)glGetString(GL_VERSION) << std::endl;
+		//std::cout << std::string("[GLSL] v") << (char*)glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 	}
 
 	Window::~Window() {
@@ -48,6 +45,10 @@ namespace core {
 	void Window::update() const {
 		glfwSwapBuffers(m_Window);
 		glfwPollEvents();
+	}
+
+	void Window::clear() const {
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	void Window::close() const {
