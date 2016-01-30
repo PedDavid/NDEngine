@@ -1,6 +1,4 @@
-﻿  window.cpp
-  logger.cpp
-  sandbox.cpp
+﻿  sandbox.cpp
   cl2.hpp: CL_HPP_TARGET_OPENCL_VERSION is not defined. It will default to 200 (OpenCL 2.0)
 c:\users\pedro admin\documents\visual studio 2015\projects\ndengine\dependencies\opencl\include\cl\cl2.hpp(6523): warning C4018: '<': signed/unsigned mismatch
 c:\users\pedro admin\documents\visual studio 2015\projects\ndengine\core\src\sandbox.cpp(25): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
@@ -8,9 +6,6 @@ c:\users\pedro admin\documents\visual studio 2015\projects\ndengine\core\src\san
   vec3.cpp
   vec2.cpp
   mat4.cpp
-  opencl.cpp
-  cl2.hpp: CL_HPP_TARGET_OPENCL_VERSION is not defined. It will default to 200 (OpenCL 2.0)
-c:\users\pedro admin\documents\visual studio 2015\projects\ndengine\dependencies\opencl\include\cl\cl2.hpp(6523): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
