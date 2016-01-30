@@ -1,5 +1,0 @@
-﻿  sandbox.cpp
-c:\users\pedro admin\documents\visual studio 2015\projects\ndengine\core\src\sandbox.cpp(13): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-c:\users\pedro admin\documents\visual studio 2015\projects\ndengine\core\src\sandbox.cpp(17): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  core.vcxproj -> C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\\bin\Debug\core.exe
-  core.vcxproj -> C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\\bin\Debug\core.pdb (Partial PDB)
