@@ -36,9 +36,12 @@
     <ClCompile Include="src\logger\logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="src\computing\opencl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+=======
+>>>>>>> 66ce75b9f3ff8154094f462204ecf2e6df26e8f1
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\math\mat4.h">
@@ -68,8 +71,11 @@
     <ClInclude Include="src\logger\log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="src\computing\opencl_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+=======
+>>>>>>> 66ce75b9f3ff8154094f462204ecf2e6df26e8f1
   </ItemGroup>
 </Project>

@@ -1,7 +1,10 @@
 #pragma once
 
+<<<<<<< HEAD
 #include <ostream>
 
+=======
+>>>>>>> 66ce75b9f3ff8154094f462204ecf2e6df26e8f1
 #include "vec3.h"
 #include "vec4.h"
 
