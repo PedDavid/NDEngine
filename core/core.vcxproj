@@ -69,29 +69,29 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
     <IncludePath>$(SolutionDir)\Dependencies\GLEW\include;$(SolutionDir)\Dependencies\OpenCL\include;$(SolutionDir)\Dependencies\GLFW\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Dependencies\GLFW\lib\Win32;$(SolutionDir)\Dependencies\OpenCL\lib\x86;$(SolutionDir)\Dependencies\GLEW\lib\Release\Win32;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
     <IncludePath>$(SolutionDir)\Dependencies\GLEW\include;$(SolutionDir)\Dependencies\OpenCL\include;$(SolutionDir)\Dependencies\GLFW\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Dependencies\GLFW\lib\Win32;$(SolutionDir)\Dependencies\OpenCL\lib\x86;$(SolutionDir)\Dependencies\GLEW\lib\Release\Win32;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
     <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLEW\include;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLFW\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLFW\lib\x64;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLEW\lib\Release\x64;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
     <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLEW\include;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLFW\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLFW\lib\x64;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLEW\lib\Release\x64;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>

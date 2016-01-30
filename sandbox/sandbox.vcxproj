@@ -69,25 +69,25 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
-    <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\lua\bin\Release\Win32;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\lua\src;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\lua\include;$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
+    <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\bin\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\src;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
-    <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\lua\bin\Release\Win32;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\lua\src;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\lua\include;$(IncludePath)</IncludePath>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
+    <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\bin\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\src;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
     <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\lua\include;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(SolutionDir)$(ProjectName)\bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
     <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\lua\include;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
