@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ostream>
+
 namespace core {	namespace math {
 	struct vec4 {
 		float x, y, z, w;

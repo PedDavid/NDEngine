@@ -31,9 +31,11 @@ namespace core {	namespace logger {
 				break;
 			case Success:
 				SetConsoleTextAttribute(m_consoleHandle, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-				break;
+				printf("%s\n", message);
+				SetConsoleTextAttribute(m_consoleHandle, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+				return;
 			}
-			printf("%s\n", message);
+			fprintf(stderr, "%s\n", message);
 			SetConsoleTextAttribute(m_consoleHandle, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
 		}
 #endif
