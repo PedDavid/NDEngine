@@ -22,12 +22,15 @@
 *.pidb
 *.svclog
 *.scc
+*.tlog
+*.idb
 
 # Visual Studio 2015 cache/options directory
 .vs/
 
 # Visual C++ cache files
 ipch/
+*.opendb
 *.aps
 *.ncb
 *.opensdf
