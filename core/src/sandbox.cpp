@@ -3,21 +3,21 @@
 #include "util\timer.h"
 #include "window\window.h"
 
-#include <CL\cl2.hpp>
 
-#include <cstdio>
-#include <cstdlib>
-#include <fstream>
+#include "input\input_manager.h"
+#include "input\command.h"
 #include <iostream>
-#include <string>
-#include <iterator>
 
 using namespace core;
 
 int main() {
 	Window window = Window("Hello Window!", 640, 300);
-	std::cout << std::string("[OpenGL] v") << (char*)glGetString(GL_VERSION) << std::endl;
-	std::cout << std::string("[GLSL] v") << (char*)glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+	input::InputManager input = input::InputManager(state::StateManager());
+	window.setInputManager(&input);
+	class CommandA : public Command{
+		void execute() { std::cout << "Hello Command " << std::endl; }
+	};
+	input.setCommand(GLFW_KEY_A, new CommandA);
 	glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 	while (!window.closed()) {
 		window.clear();
