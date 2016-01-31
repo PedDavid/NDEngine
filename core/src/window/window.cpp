@@ -52,7 +52,7 @@ namespace core {
 	}
 
 	void Window::close() const {
-		glfwDestroyWindow(m_Window);
+		glfwSetWindowShouldClose(m_Window, GL_TRUE);
 	}
 
 	void Window::makeCurrent() const {
@@ -65,6 +65,15 @@ namespace core {
 
 	void Window::setVSync(bool vSync) const {
 		glfwSwapInterval(vSync ? 1 : 0);
+	}
+
+	void Window::destroy() const {
+		glfwDestroyWindow(m_Window);
+		delete this;
+	}
+
+	void Window::setInputManager(input::InputManager *manager) {
+		m_InputManager = manager;
 	}
 
 	static void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {

@@ -27,9 +27,9 @@ namespace core {
 
 		bool closed() const;
 
-		void setInputManager(input::InputManager *manager) {
-			m_InputManager = manager;
-		}
+		void destroy() const;
+
+		void setInputManager(input::InputManager *manager);
 
 	private:
 		void init();

@@ -15,9 +15,12 @@ int main() {
 	input::InputManager input = input::InputManager(state::StateManager());
 	window.setInputManager(&input);
 	class CommandA : public Command{
-		void execute() { std::cout << "Hello Command " << std::endl; }
+		Window *win;
+	public:
+		CommandA(Window *win) : win(win) {}
+		void execute() { win->close(); }
 	};
-	input.setCommand(GLFW_KEY_A, new CommandA);
+	input.setCommand(GLFW_KEY_ESCAPE, new CommandA(&window));
 	glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 	while (!window.closed()) {
 		window.clear();
