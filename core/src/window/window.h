@@ -8,7 +8,7 @@
 namespace core {
 	class Window {
 
-	public:
+	private:
 		GLFWwindow *m_Window;
 		input::InputManager *m_InputHandle;
 

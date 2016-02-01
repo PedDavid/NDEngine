@@ -1,7 +1,13 @@
 #version 440
 
-layout (location = 0) ou vec4 color;
+layout (location = 0) out vec4 color;
+
+uniform vec2 light_pos;
+
+in vec4 pos;
 
 void main(){
-	color = vec4(1.0, 0.0, 1.0, 1.0);
+	float intensity = 1.0 / length(pos.xy - light_pos) * 0.1;
+	//color = vec4(0.0, intensity, 0.0, 1.0);
+	color = vec4(pos.x + 0.5, 0.0, 1.0, 1.0) * intensity;
 }
