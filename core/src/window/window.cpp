@@ -77,6 +77,18 @@ namespace core {
 		m_InputHandle = handle;
 	}
 
+	void Window::getCursorPosition(double *x, double *y) {
+		glfwGetCursorPos(m_Window, x, y);
+	}
+
+	int Window::getMouseButton(int key) {
+		return glfwGetMouseButton(m_Window, key);
+	}
+
+	int Window::getKey(int key) {
+		return glfwGetKey(m_Window, key);
+	}
+
 	static void window_resize(GLFWwindow* window, int width, int heigth) {
 		Window *win = (Window*)glfwGetWindowUserPointer(window);
 		win->m_Width = width;

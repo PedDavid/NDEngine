@@ -11,6 +11,8 @@
     <ClCompile Include="src\window\window.cpp" />
     <ClCompile Include="src\input\input_manager.cpp" />
     <ClCompile Include="src\window\window_manager.cpp" />
+    <ClCompile Include="src\util\file.cpp" />
+    <ClCompile Include="src\graphics\shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\computing\opencl_test.h" />
@@ -28,5 +30,11 @@
     <ClInclude Include="src\input\command.h" />
     <ClInclude Include="include\ndengine.h" />
     <ClInclude Include="src\window\window_manager.h" />
+    <ClInclude Include="src\util\file.h" />
+    <ClInclude Include="src\graphics\shader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\basic.vert" />
+    <None Include="res\basic.frag" />
   </ItemGroup>
 </Project>

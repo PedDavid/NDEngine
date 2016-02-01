@@ -8,7 +8,7 @@
 namespace core {
 	class Window {
 
-	private:
+	public:
 		GLFWwindow *m_Window;
 		input::InputManager *m_InputHandle;
 
@@ -28,6 +28,10 @@ namespace core {
 		bool closed() const;
 
 		void setInputManager(input::InputManager *handle);
+
+		void getCursorPosition(double *x, double *y);
+		int getMouseButton(int key);
+		int getKey(int key);
 
 		inline unsigned int getWidth() const { return m_Width; }
 		inline unsigned int getHeight() const { return m_Height; }
