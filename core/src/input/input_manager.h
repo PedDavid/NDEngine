@@ -13,6 +13,9 @@ namespace core {	namespace input {
 		InputManager(state::StateManager manager);
 
 		void setCommand(int key, Command *command);
-		void callBack(int key, int scancode, int action, int mods);
+		void cursorPositionCallback(int xpos, int ypos);
+		void mouseButtonCallback(int button, int action, int mods);
+		void mouseScrollCallback(double xoff, double yoff);
+		void keyCallback(int key, int scancode, int action, int mods);
 	};
 }}

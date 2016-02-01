@@ -16,44 +16,62 @@ namespace core {
 			m_Window = tempWindow;
 	}
 
+	void WindowManager::setWindow(const char *name) {
+		Window *tempWindow = getWindow(name);
+		if (tempWindow != NULL) m_Window = tempWindow;
+	}
+
+	Window *WindowManager::getWindow(const char *name) {
+		auto it = m_Map.find(name);
+		if (it == m_Map.end()) {
+			LOG(Error, "MapManager", "No Window with name found");
+			return NULL;
+		}
+		else {
+			return it->second;
+		}
+	}
+
 	Window *WindowManager::getWindow() {
 		return m_Window;
 	}
 
-	void WindowManager::setWindow(const char *name) {
-		std::map<const char*, Window*>::iterator it;
-		it = m_Map.find(name);
-		if (it == m_Map.end()) {
-			LOG(Error, "MapManager", "No Window with name found");
-		} else {
-			m_Window = it->second;
-		}
-	}
-
-	void WindowManager::close() {
+	void WindowManager::close(Window *window) {
 		size_t deleted = m_Map.erase(m_Window->m_Title);
 		delete m_Window;
 		m_Window = m_Map.begin()->second;
 	}
 
+	void WindowManager::close() {
+		close(m_Window);
+	}
+
 	void WindowManager::clear() {
-		for (std::pair<const char*, Window *> pair : m_Map) {
-			pair.second->clear();
+		for (auto it : m_Map) {
+			it.second->clear();
 		}
 	}
 
 	void WindowManager::update() {
-		for (std::pair<const char*, Window *> pair : m_Map) {
-			pair.second->update();
+		for (auto it : m_Map) {
+			it.second->update();
 		}
 	}
 
 	bool WindowManager::closed() {
-		if (m_Map.empty()) {
-			terminate();
-			return true;
-		} 
-		return false;
+		/* THIS CODE IS BUGGED */
+		bool toClose = true;
+		for (auto it = m_Map.begin(); it != m_Map.end();) {
+			if (!(Window *)it->second->closed()) {
+				toClose = false;
+				++it;
+			} else {
+				Window *tempWindow = (Window *)it->second;
+				it++;
+				close(tempWindow);
+			}
+		}
+		return toClose;
 	}
 
 	void WindowManager::terminate() {

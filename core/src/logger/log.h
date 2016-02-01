@@ -18,7 +18,7 @@ namespace core {	namespace logger {
 		std::ostringstream sstream;
 		sstream << channel << message << std::ends;
 		logMessage(logLevel, sstream.str().c_str());
-		if (logLevel > core::logger::LogLevel::Success) {
+		if (logLevel > Info) {
 			/*	Doesn't clear, only resets put pointer, no problems yet using C strings and std::ends(\0)	*/
 			sstream.seekp(0);
 			sstream << '\t' << "File: " << filename << " | Line: " << line << " | Function: " << function << std::ends;

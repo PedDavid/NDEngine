@@ -14,7 +14,9 @@ namespace core {
 	public:
 		void addWindow(const char *name, int width, int height);
 		void setWindow(const char *name);
+		Window *getWindow(const char *name);
 		Window *getWindow();
+		void close(Window *window);
 		void close();
 
 		void clear();
