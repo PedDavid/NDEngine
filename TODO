@@ -1,3 +1,4 @@
 "Window" GLFW JoyStick (seems to be bugged or doesn't recognize mine)
 Window Manager, mostly everything...
 Logging, accept different parameters
+Logging assert
