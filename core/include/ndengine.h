@@ -1,6 +1,6 @@
 #pragma once
 
-#include "..\src\window\window.h"
+#include "..\src\window\window_manager.h"
 
 #include "..\src\math\mat4.h"
 #include "..\src\math\vec2.h"
@@ -10,26 +10,18 @@
 #include "..\src\util\timer.h"
 
 namespace core {
-	class NubDevEngine {
+	class NDEngine {
 
 	private:
 		unsigned int m_FramesPerSecond, m_UpdatesPerSecond;
-		std::vector<Window*> m_Windows;
+
+	public:
+		Window *window;
 
 	protected:
-		NubDevEngine() : m_FramesPerSecond(0), m_UpdatesPerSecond(0) {	}
+		NDEngine() : m_FramesPerSecond(0), m_UpdatesPerSecond(0) {	}
 
-		virtual ~NubDevEngine() {
-			for (Window *m_Window : m_Windows) {
-				delete m_Window;
-			}
-		}
-
-		Window *createWindow(const char *name, int width, int height) {
-			m_Windows.push_back(new Window(name, width, height));
-			return m_Windows.back();
-		}
-
+		virtual ~NDEngine() {	}
 
 	public:
 		void start() {
@@ -65,8 +57,8 @@ namespace core {
 			unsigned int frames = 0;
 			unsigned int updates = 0;
 
-			while (!m_Window->closed()) {
-				m_Window->clear();
+			while (!window->closed()) {
+				window->clear();
 
 				if ((timer.elapsed() - updateTime) > updateBrake) {
 					updateTime += updateBrake;
@@ -76,7 +68,7 @@ namespace core {
 
 				render();
 				frames++;
-				m_Window->update();
+				window->update();
 
 				if ((timer.elapsed() - tickTime) > tickBrake) {
 					tickTime += tickBrake;

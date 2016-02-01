@@ -10,7 +10,7 @@ namespace core {
 
 	private:
 		GLFWwindow *m_Window;
-		input::InputManager *m_InputManager;
+		input::InputManager *m_InputHandle;
 
 		const char *m_Title;
 		const size_t m_Width, m_Height;
@@ -29,11 +29,10 @@ namespace core {
 
 		void destroy() const;
 
-		void setInputManager(input::InputManager *manager);
+		void setInputManager(input::InputManager *handle);
 
 	private:
-		void init();
-
+		friend class WindowManager;
 		friend void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods);
 		friend void error_callback(int error, const char *description);
 	};

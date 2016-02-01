@@ -72,14 +72,14 @@ namespace core {
 		delete this;
 	}
 
-	void Window::setInputManager(input::InputManager *manager) {
-		m_InputManager = manager;
+	void Window::setInputManager(input::InputManager *handle) {
+		m_InputHandle = handle;
 	}
 
 	static void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
 		Window *win = (Window*)glfwGetWindowUserPointer(window);
-		if (win->m_InputManager) {
-			win->m_InputManager->callBack(key, scancode, action, mods);
+		if (win->m_InputHandle) {
+			win->m_InputHandle->callBack(key, scancode, action, mods);
 		}
 	}
 

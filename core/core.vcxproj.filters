@@ -10,6 +10,7 @@
     <ClCompile Include="src\logger\logger.cpp" />
     <ClCompile Include="src\window\window.cpp" />
     <ClCompile Include="src\input\input_manager.cpp" />
+    <ClCompile Include="src\window\window_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\computing\opencl_test.h" />
@@ -25,5 +26,7 @@
     <ClInclude Include="src\input\input_manager.h" />
     <ClInclude Include="src\state\state_manager.h" />
     <ClInclude Include="src\input\command.h" />
+    <ClInclude Include="include\ndengine.h" />
+    <ClInclude Include="src\window\window_manager.h" />
   </ItemGroup>
 </Project>

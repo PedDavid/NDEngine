@@ -9,7 +9,9 @@ namespace core {	namespace input {
 	public:
 		state::StateManager m_StateManager;
 		std::map<int, Command*> m_Map;
+
 		InputManager(state::StateManager manager);
+
 		void setCommand(int key, Command *command);
 		void callBack(int key, int scancode, int action, int mods);
 	};
