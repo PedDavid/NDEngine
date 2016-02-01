@@ -40,8 +40,8 @@ namespace core {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_DEPTH_TEST);
 		LOG(Success, "GLEW", "INIT");
-		LOG(Info, "OpenGL", (char *)glGetString(GL_VERSION));
-		LOG(Info, "GLSL", (char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+		LOG(Info, "OpenGL", "Version: %s", (char *)glGetString(GL_VERSION));
+		LOG(Info, "GLSL", "Version: %s", (char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
 	}
 
 	Window::~Window() {
@@ -114,7 +114,7 @@ namespace core {
 	}
 
 	static void error_callback(int error, const char *description) {
-		LOG(Error, "GLFW", description);
+		LOG(Error, "GLFW", "Error: %d | Description: %s", error, description);
 	}
 
 }

@@ -10,13 +10,11 @@ namespace core {	namespace input {
 		using namespace std;
 		pair<map<int, Command*>::iterator, bool> it = m_Map.insert(pair<int, Command*>(key, command));
 		if (it.second == false) {
-			ostringstream s;
-			s << "Key" << key << "already assigned" << ends;
-			LOG(Warn, "Input", s.str().c_str());
+			LOG(Warn, "Input", "Key %d already assigned", key);
 		}
 	}
 
-	void InputManager::cursorPositionCallback(int ypos, int xpos) {
+	void InputManager::cursorPositionCallback(double ypos, double xpos) {
 
 	}
 

@@ -1,6 +1,6 @@
 #include "../include/ndengine.h"
 #include <iostream>
-
+#include <cstdarg>
 using namespace core;
 
 class Game : public NDEngine {
