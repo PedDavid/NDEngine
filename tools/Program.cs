@@ -1,17 +1,19 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace tools
-{
-    class Program
-    {
+namespace tools {
+
+    class Program {
+        [STAThread]
         static void Main(string[] args) {
-            string swag = "swag";
-            Console.WriteLine(swag);
-            Console.ReadLine();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new app());
         }
     }
 }

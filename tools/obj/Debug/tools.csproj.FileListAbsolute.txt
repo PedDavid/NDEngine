@@ -4,3 +4,5 @@ C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\bin\De
 C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Debug\tools.csprojResolveAssemblyReference.cache
 C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Debug\tools.exe
 C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Debug\tools.pdb
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Debug\tools.app.resources
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Debug\tools.csproj.GenerateResource.Cache

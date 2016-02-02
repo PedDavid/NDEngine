@@ -1,0 +1,7 @@
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\bin\Release\tools.exe.config
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\bin\Release\tools.exe
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\bin\Release\tools.pdb
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Release\tools.app.resources
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Release\tools.csproj.GenerateResource.Cache
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Release\tools.exe
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Release\tools.pdb
