@@ -9,6 +9,25 @@
 
 using namespace core;
 
+char *AskUser(const char *name, const char *file, int line) {
+	return "giveUp";
+}
+
+#define ASSERT(e) do{\
+    if (!(e)) switch (AskUser(#e, __FILE__, __LINE__)){\
+    case "giveUp":\
+        abort();\
+    case "debug":\
+        BREAK_HERE;\
+        break;\
+    }\
+} while (false)
+
+void __assert() {
+	__asm{int 3}
+}
+
+
 class Game : public NDEngine {
 
 	input::InputManager *input;
@@ -33,6 +52,7 @@ class Game : public NDEngine {
 		shader->setUniformMat4("pr_matrix", ortho);
 		
 		glClearColor(0.8f, 0.8f, 1.0f, 1.0f);
+		//int a = ASSERT(2 > 3) + ASSERT(3 > 2);
 	}
 
 	void update() {

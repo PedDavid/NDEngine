@@ -12,9 +12,6 @@ namespace core {
 		GLFWwindow *m_Window;
 		input::InputManager *m_InputHandle;
 
-		const char *m_Title;
-		size_t m_Width, m_Height;
-
 	public:
 		Window(const char *title, size_t width, size_t height);
 		~Window();
@@ -32,9 +29,6 @@ namespace core {
 		void getCursorPosition(double *x, double *y);
 		int getMouseButton(int key);
 		int getKey(int key);
-
-		inline unsigned int getWidth() const { return m_Width; }
-		inline unsigned int getHeight() const { return m_Height; }
 
 	private:
 		friend class WindowManager;

@@ -3,15 +3,13 @@
 
 namespace core {
 
-	Window::Window(const char *title, size_t width, size_t height) 
-		: m_Title(title), m_Width(width), m_Height(height) {
-
+	Window::Window(const char *title, size_t width, size_t height) {
 		/* TODO : Better Error checking (glfwTerminate always?) */
 		if (!glfwInit()) {
 			LOG(Fatal, "GLFW", "INIT");
 			glfwTerminate();
 		}
-		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
+		m_Window = glfwCreateWindow(width, height, title, NULL, NULL);
 		if (!m_Window) {
 			LOG(Fatal, "GLFW", "WINDOW CREATION");
 			glfwTerminate();
@@ -40,8 +38,8 @@ namespace core {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_DEPTH_TEST);
 		LOG(Success, "GLEW", "INIT");
-		LOG(Info, "OpenGL", "Version: %s", (char *)glGetString(GL_VERSION));
-		LOG(Info, "GLSL", "Version: %s", (char*)glGetString(GL_SHADING_LANGUAGE_VERSION));
+		LOG(Info, "OpenGL", "Version: %s", glGetString(GL_VERSION));
+		LOG(Info, "GLSL", "Version: %s", glGetString(GL_SHADING_LANGUAGE_VERSION));
 	}
 
 	Window::~Window() {
@@ -91,8 +89,6 @@ namespace core {
 
 	static void window_resize(GLFWwindow* window, int width, int heigth) {
 		Window *win = (Window*)glfwGetWindowUserPointer(window);
-		win->m_Width = width;
-		win->m_Height = heigth;
 		if (win->m_InputHandle) {
 		}
 	}

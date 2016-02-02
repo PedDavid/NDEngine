@@ -42,7 +42,7 @@ namespace core {	namespace graphics {
 			delete error;
 			glDeleteShader(shaderID);
 		} else {
-			LOG(Success, "Shader" , " ID: %d | Path: %s", shaderID, path);
+			LOG(Success, "Shader" , "ID: %d | Path: %s", shaderID, path);
 		}
 		return shaderID;
 	}

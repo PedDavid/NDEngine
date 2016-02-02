@@ -37,7 +37,6 @@ namespace core {
 	}
 
 	void WindowManager::close(Window *window) {
-		size_t deleted = m_Map.erase(m_Window->m_Title);
 		delete m_Window;
 		m_Window = m_Map.begin()->second;
 	}
