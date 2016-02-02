@@ -1,0 +1,6 @@
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\bin\Debug\tools.exe.config
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\bin\Debug\tools.exe
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\bin\Debug\tools.pdb
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Debug\tools.csprojResolveAssemblyReference.cache
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Debug\tools.exe
+C:\Users\Pedro Admin\documents\visual studio 2015\Projects\NDEngine\tools\obj\Debug\tools.pdb
