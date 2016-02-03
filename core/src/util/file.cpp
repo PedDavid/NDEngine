@@ -27,9 +27,9 @@ namespace core {	namespace util {
 		char d[sizeof(FILE_NOTIFY_INFORMATION) + MAX_PATH];
 	} fni;
 
-	static void watch(HANDLE handle, void callback(char *filename));
+	static void watch(HANDLE handle, int *c);
 
-	void directoryWatcher(const char *dirpath, void callback(char *filename)) {
+	void directoryWatcher(const char *dirpath, int *c) {
 		HANDLE hDirectory = CreateFile(dirpath,
 			FILE_LIST_DIRECTORY | GENERIC_READ,
 			FILE_SHARE_READ | FILE_SHARE_WRITE,
@@ -39,11 +39,11 @@ namespace core {	namespace util {
 			0
 			);
 		o.hEvent = CreateEvent(0, 0, 0, 0);
-		std::thread f(watch, hDirectory, callback);
+		std::thread f(watch, hDirectory, c);
 		f.detach();
 	}
 
-	static void watch(HANDLE handle, void callback(char *filename)) {
+	static void watch(HANDLE handle, int *c) {
 		DWORD b;
 		while (true) {
 			ReadDirectoryChangesW(handle,
@@ -57,7 +57,7 @@ namespace core {	namespace util {
 			if (fni.i.Action != 0) {
 				wprintf(L"action %d, b: %d, %s\n", fni.i.Action, b, fni.i.FileName);
 				fni.i.Action = 0;
-				callback((char *)fni.i.FileName);
+				*c = 1;
 			}
 			std::this_thread::sleep_for(std::chrono::seconds(2));
 		}

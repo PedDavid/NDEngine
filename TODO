@@ -1,8 +1,8 @@
 "Window" GLFW JoyStick (seems to be bugged or doesn't recognize mine)
 Window Manager, mostly everything...
-Logging assert
-*Era só jajão afinal ainda não suporta vários argumentos
 Our Window class is mostly a OO wrapper, maybe ditch it for Window Manager?
 
-c# tools (shader editor)
+c# tools (shader editor) // Not important (we hot swap shaders now boys!)
 VAO/VBO/IBO
+
+IMPORTANT: DECENT MULTITHREAD MECHANISM FOR FILE WATCHER, IT WAS JUST A TEST
