@@ -13,6 +13,7 @@
     <ClCompile Include="src\window\window_manager.cpp" />
     <ClCompile Include="src\util\file.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
+    <ClCompile Include="src\logger\log.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\computing\opencl_test.h" />

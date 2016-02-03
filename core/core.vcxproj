@@ -150,6 +150,7 @@
     <ClCompile Include="src\computing\opencl.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\input\input_manager.cpp" />
+    <ClCompile Include="src\logger\log.cpp" />
     <ClCompile Include="src\math\mat4.cpp" />
     <ClCompile Include="src\math\vec2.cpp" />
     <ClCompile Include="src\math\vec3.cpp" />
