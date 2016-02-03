@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\computing\opencl.cpp" />
     <ClCompile Include="src\sandbox.cpp" />
     <ClCompile Include="src\logger\logger.cpp" />
     <ClCompile Include="src\window\window.cpp" />
@@ -13,7 +12,6 @@
     <ClCompile Include="src\util\directory.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\computing\opencl_test.h" />
     <ClInclude Include="src\logger\log.h" />
     <ClInclude Include="src\logger\logger.h" />
     <ClInclude Include="src\util\timer.h" />

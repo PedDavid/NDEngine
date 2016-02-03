@@ -71,29 +71,29 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
-    <IncludePath>$(SolutionDir)\Dependencies\GLEW\include;$(SolutionDir)\Dependencies\OpenCL\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)math\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Dependencies\GLFW\lib\Win32;$(SolutionDir)\Dependencies\OpenCL\lib\x86;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32;$(SolutionDir)math\bin\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)math\include;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib\Win32\;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)math\bin\Release\Win32\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
-    <IncludePath>$(SolutionDir)\Dependencies\GLEW\include;$(SolutionDir)\Dependencies\OpenCL\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)math\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Dependencies\GLFW\lib\Win32;$(SolutionDir)\Dependencies\OpenCL\lib\x86;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32;$(SolutionDir)math\bin\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)math\include;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib\Win32\;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)math\bin\Release\Win32\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
-    <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLEW\include;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLFW\include;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\math\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLFW\lib\x64;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLEW\lib\Release\x64;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\math\bin\Release\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)math\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib\x64\;$(SolutionDir)Dependencies\GLEW\lib\Release\x64\;$(SolutionDir)math\bin\Release\x64\;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
-    <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLEW\include;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLFW\include;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\math\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLFW\lib\x64;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\GLEW\lib\Release\x64;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\math\bin\Release\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\include\;$(SolutionDir)Dependencies\GLEW\include\;$(SolutionDir)math\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib\x64\;$(SolutionDir)Dependencies\GLEW\lib\Release\x64\;$(SolutionDir)math\bin\Release\x64\;$(LibraryPath)</LibraryPath>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -104,7 +104,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;math.lib;glew32s.lib;OpenCL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;math.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -112,9 +112,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;math.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -129,7 +130,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;math.lib;glew32s.lib;OpenCL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;math.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -139,15 +140,15 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;math.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\computing\opencl.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\input\input_manager.cpp" />
     <ClCompile Include="src\logger\log.cpp" />
@@ -160,7 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ndengine.h" />
-    <ClInclude Include="src\computing\opencl_test.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\input\command.h" />
     <ClInclude Include="src\input\input_manager.h" />
