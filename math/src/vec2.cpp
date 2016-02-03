@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "vec2.h"
+#include "../include/math/vec2.h"
 
 namespace core {	namespace math {
 

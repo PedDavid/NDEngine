@@ -2,6 +2,7 @@
 #include <iostream>
 #include "logger\log.h"
 #include "util\file.h"
+#include "util\directory.h"
 
 #include "graphics\shader.h"
 
@@ -10,6 +11,8 @@ using namespace core;
 class Game : public NDEngine {
 
 	int c = 0;
+
+	util::DirectoryWatcher *watcher;
 
 	input::InputManager *inputx;
 	graphics::Shader *shader;
@@ -23,6 +26,7 @@ class Game : public NDEngine {
 	}
 
 	void init() {
+		watcher = new util::DirectoryWatcher("C:\\Users\\Pedro Admin\\Documents\\visual studio 2015\\Projects\\NDEngine\\core\\res\\");
 		window = new Window("Hello Window", 1280, 720);
 		inputx = new input::InputManager(state::StateManager());
 		class CommandA : public Command {
@@ -40,7 +44,7 @@ class Game : public NDEngine {
 		shader->setUniformMat4("pr_matrix", ortho);
 		
 		glClearColor(0.8f, 0.8f, 1.0f, 1.0f);
-		util::directoryWatcher("C:\\Users\\Pedro Admin\\Documents\\visual studio 2015\\Projects\\NDEngine\\core\\res\\", &c);
+		//util::directoryWatcher("C:\\Users\\Pedro Admin\\Documents\\visual studio 2015\\Projects\\NDEngine\\core\\res\\", &c);
 	}
 
 	void update() {
@@ -48,9 +52,12 @@ class Game : public NDEngine {
 	}
 
 	void tick() {
-		if (c) {
-			hi();
-			c = 0;
+		//if (c) {
+		//	hi();
+		//	c = 0;
+		//}
+		if (watcher->updated()) {
+			std::cout << "Hello Dir Change" << std::endl;
 		}
 	}
 

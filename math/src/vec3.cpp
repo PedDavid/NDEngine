@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "vec3.h"
+#include "../include/math/vec3.h"
 
 namespace core {	namespace math {
 

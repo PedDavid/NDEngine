@@ -1,8 +1,7 @@
 #include <iostream>
 
-#include "mat4.h"
-
-#include "utils.h"
+#include "../include/math/mat4.h"
+#include "../include/math/utils.h"
 
 namespace core {	namespace math {
 

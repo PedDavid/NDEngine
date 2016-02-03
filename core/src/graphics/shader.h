@@ -1,8 +1,8 @@
 #pragma once
 #include <glew.h>
 
-#include "..\math\vec2.h"
-#include "..\math\mat4.h" //already includes vec3/4
+#include <math/mat4.h> //already includes vec3/4
+#include <math/vec2.h>
 
 namespace core {	namespace graphics {
 		class Shader {

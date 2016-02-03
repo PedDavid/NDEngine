@@ -2,10 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\computing\opencl.cpp" />
-    <ClCompile Include="src\math\mat4.cpp" />
-    <ClCompile Include="src\math\vec2.cpp" />
-    <ClCompile Include="src\math\vec3.cpp" />
-    <ClCompile Include="src\math\vec4.cpp" />
     <ClCompile Include="src\sandbox.cpp" />
     <ClCompile Include="src\logger\logger.cpp" />
     <ClCompile Include="src\window\window.cpp" />
@@ -14,14 +10,10 @@
     <ClCompile Include="src\util\file.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\logger\log.cpp" />
+    <ClCompile Include="src\util\directory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\computing\opencl_test.h" />
-    <ClInclude Include="src\math\mat4.h" />
-    <ClInclude Include="src\math\utils.h" />
-    <ClInclude Include="src\math\vec2.h" />
-    <ClInclude Include="src\math\vec3.h" />
-    <ClInclude Include="src\math\vec4.h" />
     <ClInclude Include="src\logger\log.h" />
     <ClInclude Include="src\logger\logger.h" />
     <ClInclude Include="src\util\timer.h" />
@@ -33,6 +25,7 @@
     <ClInclude Include="src\window\window_manager.h" />
     <ClInclude Include="src\util\file.h" />
     <ClInclude Include="src\graphics\shader.h" />
+    <ClInclude Include="src\util\directory.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\basic.vert" />

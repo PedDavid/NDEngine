@@ -1,13 +1,10 @@
 #pragma once
 
-#include "..\src\window\window_manager.h"
+#include "../src/window/window_manager.h"
+#include "../src/util/timer.h"
 
-#include "..\src\math\mat4.h"
-#include "..\src\math\vec2.h"
-#include "..\src\math\vec3.h"
-#include "..\src\math\vec4.h"
-
-#include "..\src\util\timer.h"
+#include <math/mat4.h>
+#include <math/vec2.h>
 
 namespace core {
 	class NDEngine {
