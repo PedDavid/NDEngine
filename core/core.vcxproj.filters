@@ -10,6 +10,7 @@
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\logger\log.cpp" />
     <ClCompile Include="src\util\directory.cpp" />
+    <ClCompile Include="src\graphics\buffers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\logger\log.h" />
@@ -24,6 +25,7 @@
     <ClInclude Include="src\util\file.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\util\directory.h" />
+    <ClInclude Include="src\graphics\buffers.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\basic.vert" />

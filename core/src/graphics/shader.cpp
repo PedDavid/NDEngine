@@ -18,6 +18,7 @@ namespace core {	namespace graphics {
 		glDeleteShader(fragmentID);
 
 		m_ShaderID = programID;
+		LOG(Success, "Shader", "ID: %d", m_ShaderID);
 	}
 
 	Shader::~Shader() {

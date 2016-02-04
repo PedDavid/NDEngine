@@ -73,7 +73,7 @@
     <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
     <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)math\include;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
-    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib\Win32\;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)math\bin\Release\Win32\;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib\Win32\;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)math\bin\Debug\Win32\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\buffers.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\input\input_manager.cpp" />
     <ClCompile Include="src\logger\log.cpp" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ndengine.h" />
+    <ClInclude Include="src\graphics\buffers.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\input\command.h" />
     <ClInclude Include="src\input\input_manager.h" />
