@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glew.h>
+#include <vector>
 
 namespace core {	namespace graphics {
 

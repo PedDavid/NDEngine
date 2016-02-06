@@ -7,7 +7,7 @@
 namespace core {	namespace graphics {
 		class Shader {
 		private:
-			GLuint m_ShaderID;
+			GLuint m_ProgramID;
 			const char *m_VertPath, *m_FragPath;
 		public:
 			Shader(const char *vertPath, const char *fragPath);

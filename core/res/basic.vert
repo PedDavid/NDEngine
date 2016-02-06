@@ -12,6 +12,7 @@ out vec4 col;
 
 void main(){
 	col = color;
-	pos = position;
-	gl_Position = pr_matrix * vec4(position, 1.0);
+	vec4 aux = ml_matrix * vec4(position, 1.0);
+	pos = aux.xyz;
+	gl_Position = pr_matrix * ml_matrix * vec4(position, 1.0);
 }

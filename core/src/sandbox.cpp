@@ -6,6 +6,7 @@
 
 #include "graphics\shader.h"
 #include "graphics\buffers.h"
+#include "graphics\sprite_renderer.h"
 
 using namespace core;
 
@@ -22,7 +23,10 @@ class Game : public NDEngine {
 		shader->enable();
 		shader->setUniformMat4("pr_matrix", math::mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f));
 	}
-	graphics::vao *vao1;
+	
+	graphics::SpriteRenderer *renderer;
+	std::vector<graphics::Sprite*> sprites;
+
 	void init() {
 		watcher = new util::DirectoryWatcher("C:/Users/Pedro Admin/Documents/visual studio 2015/Projects/NDEngine/core/res/");
 		window = new Window("Hello Window", 1280, 720);
@@ -42,26 +46,6 @@ class Game : public NDEngine {
 		shader->setUniformMat4("pr_matrix", ortho);
 
 		glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
-
-		using namespace math;
-
-		GLuint elements[] = {
-			0, 1, 2,
-			0, 3, 1
-		};
-
-		vec3 vertices[] = {
-			vec3(6.0, 3.5, 0), 
-			vec3(10.0, 5.5, 0), 
-			vec3(6.0, 5.5, 0),
-			vec3(10.0, 3.5, 0)
-		};
-		vec4 colors[] = {
-			vec4(1.0, 0.8, 0.5, 1.0), 
-			vec4(1.0, 0.8, 0.5, 1.0),
-			vec4(0.2, 1.0, 1.0, 1.0), 
-			vec4(0.2, 1.0, 1.0, 1.0)
-		};
 
 		//GLuint vao;
 		//glGenVertexArrays(1, &vao);
@@ -83,15 +67,17 @@ class Game : public NDEngine {
 		//glBindVertexArray(0);
 		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		//glBindVertexArray(vao);
-		using namespace graphics;
-		vao1 = new vao;
-		vao1->bind();
-		vbo *buffer1 = new vbo((float*)vertices, 3, 3 * 4);
-		vao1->addBuffer(buffer1, 0);
-		vbo *buffer2 = new vbo((float*)colors, 4, 4 * 4);
-		vao1->addBuffer(buffer2, 1);
-		ibo *ibo1 = new ibo(elements, 6);
-		vao1->unbind();
+		renderer = new graphics::SpriteRenderer();
+		//for (int i = 0; i < 160; ++i) {
+		//	for (int c = 0; c < 90; ++c) {
+		//		if ((i + c) % 2 == 1)
+		//			sprites.push_back(new graphics::Sprite(math::vec3(i * 0.1f, c * 0.1f, 0.0f), math::vec2(1.0f, 1.0f), 0xFF00FFFF, shader));
+		//		else
+		//			sprites.push_back(new graphics::Sprite(math::vec3(i * 0.1f, c * 0.1f, 0.0f), math::vec2(1.0f, 1.0f), 0x8822FFFF, shader));
+		//	}
+		//}
+		sprites.push_back(new graphics::Sprite(math::vec3(0.0f, 0.0f, 0.0f), math::vec2(1.0f, 1.0f), 0x8822FFFF, shader));
+		sprites.push_back(new graphics::Sprite(math::vec3(1.0f, 1.0f, 0.0f), math::vec2(2.0f, 3.0f), 0x8822FFFF, shader));
 	}
 
 	void update() {
@@ -108,15 +94,17 @@ class Game : public NDEngine {
 	void render() {
 		double x, y;
 		window->getCursorPosition(&x, &y);
+		shader->enable();
 		shader->setUniform2f("light_pos", math::vec2((float)(x * 16.0f / 1280.0f), (float)(9.0f - y * 9.0f / 720.0f)));
-		vao1->bind();
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-		vao1->unbind();
+		for (auto sprite : sprites) {
+			renderer->submit(sprite);
+		}
+		renderer->flush();
 	}
 };
 
-int main() {
-	Game game;
-	game.start();
-	return 0;
-}
+//int main() {
+//	Game game;
+//	game.start();
+//	return 0;
+//}

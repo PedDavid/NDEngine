@@ -151,7 +151,10 @@
   <ItemGroup>
     <ClCompile Include="src\graphics\buffers.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
+    <ClCompile Include="src\graphics\sprite.cpp" />
+    <ClCompile Include="src\graphics\sprite_renderer.cpp" />
     <ClCompile Include="src\input\input_manager.cpp" />
+    <ClCompile Include="src\InstancedRender.cpp" />
     <ClCompile Include="src\logger\log.cpp" />
     <ClCompile Include="src\sandbox.cpp" />
     <ClCompile Include="src\logger\logger.cpp" />
@@ -164,6 +167,8 @@
     <ClInclude Include="include\ndengine.h" />
     <ClInclude Include="src\graphics\buffers.h" />
     <ClInclude Include="src\graphics\shader.h" />
+    <ClInclude Include="src\graphics\sprite.h" />
+    <ClInclude Include="src\graphics\sprite_renderer.h" />
     <ClInclude Include="src\input\command.h" />
     <ClInclude Include="src\input\input_manager.h" />
     <ClInclude Include="src\logger\log.h" />
@@ -178,6 +183,8 @@
   <ItemGroup>
     <None Include="res\basic.frag" />
     <None Include="res\basic.vert" />
+    <None Include="res\simple.frag" />
+    <None Include="res\simple.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

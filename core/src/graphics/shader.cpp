@@ -17,12 +17,12 @@ namespace core {	namespace graphics {
 		glDeleteShader(vertexID);
 		glDeleteShader(fragmentID);
 
-		m_ShaderID = programID;
-		LOG(Success, "Shader", "ID: %d", m_ShaderID);
+		m_ProgramID = programID;
+		LOG(Success, "Shader", "ID: %d", m_ProgramID);
 	}
 
 	Shader::~Shader() {
-		glDeleteProgram(m_ShaderID);
+		glDeleteProgram(m_ProgramID);
 	}
 
 	GLuint Shader::load(const char *path, GLuint type) {
@@ -49,7 +49,7 @@ namespace core {	namespace graphics {
 	}
 
 	void Shader::enable() {
-		glUseProgram(m_ShaderID);
+		glUseProgram(m_ProgramID);
 	}
 
 	void Shader::disable() {
@@ -57,7 +57,7 @@ namespace core {	namespace graphics {
 	}
 
 	GLint Shader::getUniformLocation(const GLchar *name) {
-		return glGetUniformLocation(m_ShaderID, name);
+		return glGetUniformLocation(m_ProgramID, name);
 	}
 
 	void Shader::setUniform1f(const GLchar *name, float value) {

@@ -8,6 +8,6 @@ in vec3 pos;
 in vec4 col;
 
 void main(){
-	float intensity = 1.0 / length(pos.xy - light_pos) * 0.15;
+	float intensity = 1.0 / length(pos.xy - light_pos);
 	color = col * intensity;
 }
