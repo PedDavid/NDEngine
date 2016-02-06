@@ -22,7 +22,7 @@ class Game : public NDEngine {
 		shader->enable();
 		shader->setUniformMat4("pr_matrix", math::mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f));
 	}
-
+	graphics::vao *vao1;
 	void init() {
 		watcher = new util::DirectoryWatcher("C:/Users/Pedro Admin/Documents/visual studio 2015/Projects/NDEngine/core/res/");
 		window = new Window("Hello Window", 1280, 720);
@@ -63,27 +63,35 @@ class Game : public NDEngine {
 			vec4(0.2, 1.0, 1.0, 1.0)
 		};
 
-		GLuint vao;
-		glGenVertexArrays(1, &vao);
-		glBindVertexArray(vao);
-		GLuint vbo[2];
-		glGenBuffers(2, vbo);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
-		glBindBuffer(GL_ARRAY_BUFFER, vbo[1]);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
-		std::cout << sizeof(colors) << std::endl;
-		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-		GLuint ibo;
-		glGenBuffers(1, &ibo);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-		glBindVertexArray(0);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-		glBindVertexArray(vao);
+		//GLuint vao;
+		//glGenVertexArrays(1, &vao);
+		//glBindVertexArray(vao);
+		//GLuint vbo[2];
+		//glGenBuffers(2, vbo);
+		//glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
+		//glBindBuffer(GL_ARRAY_BUFFER, vbo[1]);
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
+		//glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
+		//glEnableVertexAttribArray(0);
+		//glEnableVertexAttribArray(1);
+		//GLuint ibo;
+		//glGenBuffers(1, &ibo);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
+		//glBindVertexArray(0);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		//glBindVertexArray(vao);
+		using namespace graphics;
+		vao1 = new vao;
+		vao1->bind();
+		vbo *buffer1 = new vbo((float*)vertices, 3, 3 * 4);
+		vao1->addBuffer(buffer1, 0);
+		vbo *buffer2 = new vbo((float*)colors, 4, 4 * 4);
+		vao1->addBuffer(buffer2, 1);
+		ibo *ibo1 = new ibo(elements, 6);
+		vao1->unbind();
 	}
 
 	void update() {
@@ -101,7 +109,9 @@ class Game : public NDEngine {
 		double x, y;
 		window->getCursorPosition(&x, &y);
 		shader->setUniform2f("light_pos", math::vec2((float)(x * 16.0f / 1280.0f), (float)(9.0f - y * 9.0f / 720.0f)));
+		vao1->bind();
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		vao1->unbind();
 	}
 };
 

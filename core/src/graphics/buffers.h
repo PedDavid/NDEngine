@@ -7,7 +7,7 @@ namespace core {	namespace graphics {
 	struct vbo {
 		GLuint id;
 		GLuint comp_count;
-		vbo();
+		vbo(float *buffer, GLuint comp_count, GLsizei count);
 		~vbo();
 		void bind();
 		void unbind();
@@ -15,14 +15,15 @@ namespace core {	namespace graphics {
 	struct ibo {
 		GLuint id;
 		GLuint count;
+		ibo(GLuint *buffer, GLsizei count);
+		~ibo();
 	};
 	struct vao {
 		GLuint id;
 		vao();
 		~vao();
 		void bind();
-		void addBuffer(vbo *buffer);
-		void addElementBuffer(ibo *buffer);
+		void addBuffer(vbo *buffer, GLuint index);
 		void unbind();
 	};
 }}

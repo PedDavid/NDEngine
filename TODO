@@ -6,3 +6,5 @@ c# tools (shader editor) // Not important (we hot swap shaders now boys!)
 VAO/VBO/IBO
 
 IMPORTANT: DECENT MULTITHREAD MECHANISM FOR FILE WATCHER, IT WAS JUST A TEST
+
+math library: mat4 as float m[4][4];
