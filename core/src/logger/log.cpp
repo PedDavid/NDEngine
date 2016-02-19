@@ -17,7 +17,7 @@ namespace core {	namespace logger {
 		}
 	}
 
-	void AskUser() {
+	void ask_user() {
 		printf("(I)gnore, (B)reak\n");
 		char option;
 		std::cin >> option;

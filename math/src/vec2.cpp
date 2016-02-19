@@ -1,10 +1,14 @@
-#include <iostream>
-
 #include "../include/math/vec2.h"
 
 namespace core {	namespace math {
 
+	vec2::vec2() : x(0.0f), y(0.0f) {	}
+	vec2::vec2(float xy) : x(xy), y(xy) {	}
 	vec2::vec2(float x, float y) : x(x), y(y) {	}
+
+	float vec2::magnitude() {
+		return sqrt(x * x + y * y);
+	}
 
 	vec2 &vec2::add(const vec2 &vector) {
 		x += vector.x;
@@ -41,22 +45,6 @@ namespace core {	namespace math {
 		return *this;
 	}
 
-	vec2 operator+(vec2 &operand, const vec2 vector) {
-		return operand.add(vector);
-	}
-
-	vec2 operator-(vec2 &operand, const vec2 vector) {
-		return operand.subtract(vector);
-	}
-
-	vec2 operator*(vec2 &operand, const vec2 vector) {
-		return operand.multiply(vector);
-	}
-
-	vec2 operator/(vec2 &operand, const vec2 vector) {
-		return operand.divide(vector);
-	}
-
 	vec2 &vec2::operator+=(const vec2 &vector) {
 		return add(vector);
 	}
@@ -85,8 +73,20 @@ namespace core {	namespace math {
 		return !(*this == vector);
 	}
 
-	float vec2::getMagnitude() {
-		return sqrt(x * x + y * y);
+	vec2 operator+(const vec2 lhs, const vec2 rhs) {
+		return vec2(lhs.x + rhs.x, lhs.y + rhs.y);
+	}
+
+	vec2 operator-(const vec2 lhs, const vec2 rhs) {
+		return vec2(lhs.x - rhs.x, lhs.y - rhs.y);
+	}
+
+	vec2 operator*(const vec2 lhs, const vec2 rhs) {
+		return vec2(lhs.x * rhs.x, lhs.y * rhs.y);
+	}
+
+	vec2 operator/(const vec2 lhs, const vec2 rhs) {
+		return vec2(lhs.x / rhs.x, lhs.y + rhs.y);
 	}
 
 	std::ostream& operator<<(std::ostream &stream, const vec2 &vector) {

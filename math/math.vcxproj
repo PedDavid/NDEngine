@@ -132,6 +132,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\mat4.h" />
+    <ClInclude Include="include\math\mat4.h" />
+    <ClInclude Include="include\math\utils.h" />
+    <ClInclude Include="include\math\vec2.h" />
+    <ClInclude Include="include\math\vec3.h" />
+    <ClInclude Include="include\math\vec4.h" />
     <ClInclude Include="include\utils.h" />
     <ClInclude Include="include\vec2.h" />
     <ClInclude Include="include\vec3.h" />

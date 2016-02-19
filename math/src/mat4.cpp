@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "../include/math/mat4.h"
 #include "../include/math/utils.h"
 

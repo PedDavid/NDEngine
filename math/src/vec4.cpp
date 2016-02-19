@@ -1,10 +1,14 @@
-#include <iostream>
-
 #include "../include/math/vec4.h"
 
 namespace core {	namespace math {
 
+	vec4::vec4() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {	}
+	vec4::vec4(float xyzw) : x(xyzw), y(xyzw), z(xyzw), w(xyzw) {	}
 	vec4::vec4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {	}
+
+	float vec4::magnitude() {
+		return sqrt(x * x + y * y + z * z + w * w);
+	}
 
 	vec4 &vec4::add(const vec4 &vector) {
 		x += vector.x;
@@ -51,22 +55,6 @@ namespace core {	namespace math {
 		return *this;
 	}
 
-	vec4 operator+(vec4 &operand, const vec4 vector) {
-		return operand.add(vector);
-	}
-
-	vec4 operator-(vec4 &operand, const vec4 vector) {
-		return operand.subtract(vector);
-	}
-
-	vec4 operator*(vec4 &operand, const vec4 vector) {
-		return operand.multiply(vector);
-	}
-
-	vec4 operator/(vec4 &operand, const vec4 vector) {
-		return operand.divide(vector);
-	}
-
 	vec4 &vec4::operator+=(const vec4 &vector) {
 		return add(vector);
 	}
@@ -95,8 +83,20 @@ namespace core {	namespace math {
 		return !(*this == vector);
 	}
 
-	float vec4::getMagnitude() {
-		return sqrt(x * x + y * y + z * z + w * w);
+	vec4 operator+(const vec4 lhs, const vec4 rhs) {
+		return vec4(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.z);
+	}
+
+	vec4 operator-(const vec4 lhs, const vec4 rhs) {
+		return vec4(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.z);
+	}
+
+	vec4 operator*(const vec4 lhs, const vec4 rhs) {
+		return vec4(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z, lhs.w * rhs.z);
+	}
+
+	vec4 operator/(const vec4 lhs, const vec4 rhs) {
+		return vec4(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z, lhs.w / rhs.z);
 	}
 
 	std::ostream &operator<<(std::ostream &stream, const vec4 &vector) {

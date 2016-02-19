@@ -1,10 +1,14 @@
-#include <iostream>
-
 #include "../include/math/vec3.h"
 
 namespace core {	namespace math {
 
+	vec3::vec3() : x(0.0f), y(0.0f), z(0.0f) {	}
+	vec3::vec3(float xyz) : x(xyz), y(xyz), z(xyz) {	}
 	vec3::vec3(float x, float y, float z) : x(x), y(y), z(z) {	}
+
+	float vec3::magnitude() {
+		return sqrt(x * x + y * y + z * z);
+	}
 
 	vec3 &vec3::add(const vec3 &vector) {
 		x += vector.x;
@@ -46,22 +50,6 @@ namespace core {	namespace math {
 		return *this;
 	}
 
-	vec3 operator+(vec3 &operand, const vec3 vector) {
-		return operand.add(vector);
-	}
-
-	vec3 operator-(vec3 &operand, const vec3 vector) {
-		return operand.subtract(vector);
-	}
-
-	vec3 operator*(vec3 &operand, const vec3 vector) {
-		return operand.multiply(vector);
-	}
-
-	vec3 operator/(vec3 &operand, const vec3 vector) {
-		return operand.divide(vector);
-	}
-
 	vec3 &vec3::operator+=(const vec3 &vector) {
 		return add(vector);
 	}
@@ -90,8 +78,20 @@ namespace core {	namespace math {
 		return !(*this == vector);
 	}
 
-	float vec3::getMagnitude() {
-		return sqrt(x * x + y * y + z * z);
+	vec3 operator+(const vec3 lhs, const vec3 rhs) {
+		return vec3(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
+	}
+
+	vec3 operator-(const vec3 lhs, const vec3 rhs) {
+		return vec3(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
+	}
+
+	vec3 operator*(const vec3 lhs, const vec3 rhs) {
+		return vec3(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z);
+	}
+
+	vec3 operator/(const vec3 lhs, const vec3 rhs) {
+		return vec3(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z);
 	}
 
 	std::ostream &operator<<(std::ostream &stream, const vec3 &vector) {

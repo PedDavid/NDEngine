@@ -71,8 +71,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
-    <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\bin\Release\Win32;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\src;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\bin\Release\Win32;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\math\bin\Debug\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\src;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\Dependencies\LUA\include;C:\Users\Pedro Admin\Documents\Visual Studio 2015\Projects\NDEngine\math\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
@@ -97,7 +97,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>lua.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua.lib;math.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -15,7 +15,7 @@
 		do{											\
 			if (!(x)) {								\
 				LOG(Fatal, "Assertion", "%s", #x);	\
-				core::logger::AskUser();			\
+				core::logger::ask_user();			\
 			}										\
 		} while (0)
 
@@ -23,7 +23,7 @@ namespace core {	namespace logger {
 
 	void log_message(LogLevel logLevel, const char *message, const char *filename, int line, char *function, ...);
 
-	void AskUser();
+	void ask_user();
 
 	void log_gl_message(const char *stmt, const char *file, int line, const char *function);
 }}

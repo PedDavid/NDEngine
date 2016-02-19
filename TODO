@@ -3,8 +3,10 @@ Window Manager, mostly everything...
 Our Window class is mostly a OO wrapper, maybe ditch it for Window Manager?
 
 c# tools (shader editor) // Not important (we hot swap shaders now boys!)
-VAO/VBO/IBO
 
-IMPORTANT: DECENT MULTITHREAD MECHANISM FOR FILE WATCHER, IT WAS JUST A TEST
+IMPORTANT: DECENT MULTITHREAD MECHANISM FOR FILE WATCHER, IT WAS JUST A TEST 
+(update: not multithreaded now because we had to check in current thread because of opengl anyway)
 
-math library: mat4 as float m[4][4];
+FreeImage as static library, can't compile because of vs 2015 errors
+
+Math: Correct matrix * overload; vector swizzling and vector variable constructors

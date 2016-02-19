@@ -41,11 +41,30 @@ class Game : public NDEngine {
 		window->setInputManager(inputx);
 
 		math::mat4 ortho = math::mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
-		shader = new graphics::Shader("res\\basic.vert", "res\\basic.frag");
+		shader = new graphics::Shader("res/basic.vert", "res/basic.frag");
 		shader->enable();
 		shader->setUniformMat4("pr_matrix", ortho);
 
 		glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
+
+		GLuint buffsize = 100;
+		GLsizei length;
+		GLsizei size;
+		GLenum type;
+		GLchar name[100];
+
+		GLint count;
+		glGetProgramiv(1, GL_ACTIVE_UNIFORMS, &count);
+		std::cout << count << std::endl;
+		for (int i = 0; i < count; ++i) {
+			glGetActiveUniform(1, i, buffsize, &length, &size, &type, name);
+			std::cout << "Type: " << type << " | Name: " << name << " | Size: " << size << " | Length: " << length << std::endl;
+		}
+		glGetProgramiv(1, GL_ACTIVE_ATTRIBUTES, &count);
+		for (int i = 0; i < count; ++i) {
+			glGetActiveAttrib(1, i, buffsize, &length, &size, &type, name);
+			std::cout << "Type: " << type << " | Name: " << name << " | Size: " << size << " | Length: " << length << std::endl;
+		}
 
 		//GLuint vao;
 		//glGenVertexArrays(1, &vao);
