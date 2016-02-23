@@ -10,3 +10,7 @@ IMPORTANT: DECENT MULTITHREAD MECHANISM FOR FILE WATCHER, IT WAS JUST A TEST
 FreeImage as static library, can't compile because of vs 2015 errors
 
 Math: Correct matrix * overload; vector swizzling and vector variable constructors
+
+PBR: Global Illumination (later), everything else, optimization
+
+Font rendering
