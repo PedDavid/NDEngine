@@ -71,12 +71,19 @@ namespace core {	namespace graphics {
 		glGenVertexArrays(1, &m_Vao);
 		glBindVertexArray(m_Vao);
 		GLuint vbos[3];
-		glGenBuffers(1, vbos);
+		glGenBuffers(3, vbos);
+
 		glBindBuffer(GL_ARRAY_BUFFER, vbos[0]);
-		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), &vertices[0], GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(math::vec3), &vertices[0], GL_STATIC_DRAW);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
 		glEnableVertexAttribArray(0);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbos[1]);
+
+		glBindBuffer(GL_ARRAY_BUFFER, vbos[1]);
+		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(math::vec3), normals, GL_STATIC_DRAW);
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
+		glEnableVertexAttribArray(1);
+
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbos[2]);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, vertex_indices.size() * sizeof(GLuint), &vertex_indices[0], GL_STATIC_DRAW);
 		m_Count = vertex_indices.size();
 

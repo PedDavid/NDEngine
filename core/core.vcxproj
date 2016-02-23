@@ -187,8 +187,8 @@
   <ItemGroup>
     <None Include="res\basic.frag" />
     <None Include="res\basic.vert" />
-    <None Include="res\simple.frag" />
-    <None Include="res\simple.vert" />
+    <None Include="res\pbr.frag" />
+    <None Include="res\pbr.vert" />
     <None Include="res\texture.frag" />
     <None Include="res\texture.vert" />
   </ItemGroup>

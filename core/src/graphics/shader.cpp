@@ -2,14 +2,14 @@
 #include "..\util\file.h"
 #include "..\logger\log.h"
 
+#include <iostream>
+
 namespace core {	namespace graphics {
 
-	Shader::Shader(const char *vertPath, const char *fragPath) 
-		: m_VertPath(vertPath), m_FragPath(fragPath) {
-		
+	Shader::Shader(const char *vertPath, const char *fragPath) {
 		GLuint programID = glCreateProgram();
-		GLuint vertexID = load(m_VertPath, GL_VERTEX_SHADER);
-		GLuint fragmentID = load(m_FragPath, GL_FRAGMENT_SHADER);
+		GLuint vertexID = load(vertPath, GL_VERTEX_SHADER);
+		GLuint fragmentID = load(fragPath, GL_FRAGMENT_SHADER);
 		glAttachShader(programID, vertexID);
 		glAttachShader(programID, fragmentID);
 		glLinkProgram(programID);
@@ -19,6 +19,7 @@ namespace core {	namespace graphics {
 
 		m_ProgramID = programID;
 		LOG(Success, "Shader", "ID: %d", m_ProgramID);
+		cacheVariableLocations();
 	}
 
 	Shader::~Shader() {
@@ -43,9 +44,28 @@ namespace core {	namespace graphics {
 			delete error;
 			glDeleteShader(shaderID);
 		} else {
-			LOG(Success, "Shader" , "ID: %d | Path: %s", shaderID, path);
+			LOG(Success, "Shader", "ID: %d | Path: %s", shaderID, path);
 		}
 		return shaderID;
+	}
+
+	void Shader::cacheVariableLocations() {
+		GLuint buffsize = 124;
+		GLsizei length;
+		GLsizei size;
+		GLenum type;
+		GLchar name[124];
+		GLint count;
+		glGetProgramiv(1, GL_ACTIVE_ATTRIBUTES, &count);
+		for (int i = 0; i < count; ++i) {
+			glGetActiveAttrib(1, i, buffsize, &length, &size, &type, name);
+			m_AttribMap.emplace(std::string(name), glGetAttribLocation(m_ProgramID, name));
+		}
+		glGetProgramiv(1, GL_ACTIVE_UNIFORMS, &count);
+		for (int i = 0; i < count; ++i) {
+			glGetActiveUniform(1, i, buffsize, &length, &size, &type, name);
+			m_UniformMap.emplace(std::string(name), glGetUniformLocation(m_ProgramID, name));
+		}
 	}
 
 	void Shader::enable() {
@@ -56,8 +76,22 @@ namespace core {	namespace graphics {
 		glUseProgram(0);
 	}
 
+	GLint Shader::getAttribLocation(const GLchar *name) {
+		auto it = m_AttribMap.find(name);
+		if (it == m_AttribMap.end()) {
+			LOG(Error, "Shader", "Attribute %s not found", name);
+			return -1;
+		}
+		return it->second;
+	}
+
 	GLint Shader::getUniformLocation(const GLchar *name) {
-		return glGetUniformLocation(m_ProgramID, name);
+		auto it = m_UniformMap.find(name);
+		if (it == m_UniformMap.end()) {
+			LOG(Error, "Shader", "Attribute %s not found", name);
+			return -1;
+		}
+		return it->second;
 	}
 
 	void Shader::setUniform1f(const GLchar *name, float value) {

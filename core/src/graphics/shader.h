@@ -2,17 +2,31 @@
 #include <glew.h>
 
 #include <math/mat4.h> //already includes vec3/4
+#include <math/vec4.h>
+#include <math/vec3.h>
 #include <math/vec2.h>
+
+#include <unordered_map>
 
 namespace core {	namespace graphics {
 		class Shader {
 		private:
 			GLuint m_ProgramID;
-			const char *m_VertPath, *m_FragPath;
+
+			std::unordered_map<std::string, GLint> m_AttribMap;
+			std::unordered_map<std::string, GLint> m_UniformMap;
+
 		public:
 			Shader(const char *vertPath, const char *fragPath);
 			~Shader();
 
+		private:
+			GLuint load(const char *path, GLuint type);
+			void cacheVariableLocations();
+			GLint getAttribLocation(const GLchar *name);
+			GLint getUniformLocation(const GLchar *name);
+
+		public:
 			void enable();
 			void disable();
 
@@ -24,10 +38,5 @@ namespace core {	namespace graphics {
 			void setUniform3f(const GLchar *name, const math::vec3& vector);
 			void setUniform4f(const GLchar *name, const math::vec4& vector);
 			void setUniformMat4(const GLchar* name, const math::mat4 &matrix);
-
-		private:
-			GLuint load(const char *path, GLuint type);
-
-			GLint getUniformLocation(const GLchar *name);
 		};
 }}
