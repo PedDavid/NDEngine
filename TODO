@@ -14,3 +14,5 @@ Math: Correct matrix * overload; vector swizzling and vector variable constructo
 PBR: Global Illumination (later), everything else, optimization
 
 Font rendering
+
+Vertex with multiple normals in obj currently gets the last normal, should average/half vector

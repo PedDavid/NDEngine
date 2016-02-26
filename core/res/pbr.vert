@@ -18,6 +18,6 @@ void main(){
 	gl_Position = pr_matrix * vw_matrix * worldPosition;
 	
 	face_normal = normalize((ml_matrix * vec4(normal, 0.0)).xyz);
-	light_dir = normalize(light_pos - worldPosition.xyz);
+	light_dir = light_pos - worldPosition.xyz;
 	view_dir = normalize((inverse(vw_matrix) * vec4(0.0, 0.0, 0.0, 1.0)).xyz - worldPosition.xyz);
 }
