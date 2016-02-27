@@ -9,7 +9,7 @@
 
 namespace core {	namespace util {
 
-	std::string readFile(const char *filepath) {
+	std::string readFile(const std::string filepath) {
 		std::ifstream in(filepath, std::ifstream::in | std::ios::binary);
 		ASSERT(in);
 		std::string contents;

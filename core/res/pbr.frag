@@ -55,6 +55,6 @@ void main() {
 	float NoV = dot(unit_normal, unit_view);
 	vec3 h = normalize(unit_view + unit_light);
 
-	vec3 colora = F(vec3(metalness), unit_light, h) * D(unit_normal, h); // * G(unit_normal, unit_light, unit_view, h) / (4 * NoL * NoV); + subSurfaceReflection();
+	vec3 colora = F(vec3(metalness), unit_light, h) * D(unit_normal, h); // * G(unit_normal, unit_light, unit_view, h) / (4 * NoL * NoV); //+ subSurfaceReflection();
 	color = vec4(colora, 1.0);
 }

@@ -23,14 +23,18 @@ class MeshTest : public NDEngine {
 	math::vec3 light_pos = math::vec3(0.0f, 0.0f, 0.0f);
 
 	void init() {
-		logger::setLogLevel(logger::LogLevel::Fatal);
+		//logger::setLogLevel(logger::LogLevel::Fatal);
 		window = new Window("Hello Window", 1280, 720);
 		math::mat4 ortho = math::mat4::prespective(70.0f, 16.0f/9.0f, 0.01f, 100.0f);
-		shader = new graphics::Shader("res/pbr.vert", "res/pbr.frag");
+		shader = new graphics::Shader({ 
+			{graphics::Shader::Type::VERTEX, "res/pbr.vert"}, 
+			{graphics::Shader::Type::GEOMETRY, "res/pbr.geom"},
+			{graphics::Shader::Type::FRAGMENT, "res/pbr.frag"}
+		});
 		shader->enable();
 		shader->setUniformMat4("pr_matrix", ortho);
 		shader->setUniform3f("diffuse", math::vec3(0.92, 0.20, 0.90));
-		mesh = new graphics::Mesh("C:/Users/Pedro Admin/Desktop/sphere.obj");
+		mesh = new graphics::Mesh("C:/Users/Pedro Admin/Desktop/cube.obj");
 		glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
 		glEnable(GL_FRAMEBUFFER_SRGB);
 	}
@@ -85,7 +89,7 @@ class MeshTest : public NDEngine {
 
 	void render() {
 		shader->enable();
-		math::mat4 ml = math::mat4::translation(math::vec3(0.0f, -0.1f, zpos)) * math::mat4::rotation(rotation, math::vec3(0.0, 1.0, 0.0)) * math::mat4::scale(0.13f);
+		math::mat4 ml = math::mat4::translation(math::vec3(0.0f, -0.1f, zpos)) * math::mat4::rotation(rotation, math::vec3(0.0, 1.0, 0.0)) * math::mat4::scale(0.03f);
 		shader->setUniformMat4("ml_matrix", ml);
 		shader->setUniform3f("light_pos", light_pos);
 		shader->setUniform1f("roughness", roughness);

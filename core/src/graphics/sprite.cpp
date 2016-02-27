@@ -1,6 +1,7 @@
 #include "sprite.h"
 
 namespace core {	namespace graphics {
+
 	Sprite::Sprite(math::vec3 position, math::vec2 size, unsigned int color, Shader *shader)
 		: m_Position(position), m_Size(size), m_Color(color), shader(shader) {
 

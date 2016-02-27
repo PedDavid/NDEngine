@@ -6,19 +6,22 @@
 
 namespace core {	namespace graphics {
 
-	Shader::Shader(const char *vertPath, const char *fragPath) {
-		GLuint programID = glCreateProgram();
-		GLuint vertexID = load(vertPath, GL_VERTEX_SHADER);
-		GLuint fragmentID = load(fragPath, GL_FRAGMENT_SHADER);
-		glAttachShader(programID, vertexID);
-		glAttachShader(programID, fragmentID);
-		glLinkProgram(programID);
-		glValidateProgram(programID);
-		glDeleteShader(vertexID);
-		glDeleteShader(fragmentID);
+	Shader::Shader(std::initializer_list<std::pair<const Type, const std::string>> list) {
+		std::vector<GLuint> shaderIDs;
+		m_ProgramID = glCreateProgram();
+		for (auto pair : list) {
+			GLuint id = load(pair.first, pair.second);
+			shaderIDs.push_back(id);
+		}
+		linkProgram(shaderIDs);
+		cacheVariableLocations();
+	}
 
-		m_ProgramID = programID;
-		LOG(Success, "Shader", "ID: %d", m_ProgramID);
+	Shader::Shader(const std::string vertPath, const std::string fragPath) {
+		m_ProgramID = glCreateProgram();
+		GLuint vertexID = load(GL_VERTEX_SHADER, vertPath);
+		GLuint fragmentID = load(GL_FRAGMENT_SHADER, fragPath);
+		linkProgram({ vertexID, fragmentID });
 		cacheVariableLocations();
 	}
 
@@ -26,7 +29,7 @@ namespace core {	namespace graphics {
 		glDeleteProgram(m_ProgramID);
 	}
 
-	GLuint Shader::load(const char *path, GLuint type) {
+	GLuint Shader::load(GLuint type, const std::string path) {
 		GLuint shaderID = glCreateShader(type);
 		std::string vertSourceString = util::readFile(path);
 		const char *source = vertSourceString.c_str();
@@ -44,9 +47,19 @@ namespace core {	namespace graphics {
 			delete error;
 			glDeleteShader(shaderID);
 		} else {
-			LOG(Success, "Shader", "ID: %d | Path: %s", shaderID, path);
+			LOG(Success, "Shader", "ID: %d | Path: %s", shaderID, path.c_str());
+			glAttachShader(m_ProgramID, shaderID);
 		}
 		return shaderID;
+	}
+
+	void Shader::linkProgram(std::vector<GLuint> shaderIDs) {
+		glLinkProgram(m_ProgramID);
+		glValidateProgram(m_ProgramID);
+		for (GLuint id : shaderIDs) {
+			glDeleteShader(id);
+		}
+		LOG(Success, "Shader", "ID: %d", m_ProgramID);
 	}
 
 	void Shader::cacheVariableLocations() {
