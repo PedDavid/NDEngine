@@ -18,15 +18,20 @@ namespace core {	namespace logger {
 	}
 
 	void ask_user() {
-		printf("(I)gnore, (B)reak\n");
+		printf("(Q)uit | (I)gnore | (B)reak\n");
 		char option;
 		std::cin >> option;
 		switch (option) {
+			case 'Q':
+			case 'q':
+				exit(EXIT_FAILURE);
+				break;
 			case 'I':
 			case 'i':
 				return;
 			default:
 				__debugbreak();
+				break;
 		}
 	}
 

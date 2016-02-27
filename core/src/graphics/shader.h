@@ -34,9 +34,10 @@ namespace core {	namespace graphics {
 		~Shader();
 
 	private:
-		GLuint load(GLuint type, const std::string path);
-		void cacheVariableLocations();
+		GLuint load(Type type, const std::string path);
 		void linkProgram(std::vector<GLuint> shaderIDs);
+		void cacheVariableLocations();
+		GLchar *getTypeString(Type type);
 		GLint getAttribLocation(const GLchar *name);
 		GLint getUniformLocation(const GLchar *name);
 		

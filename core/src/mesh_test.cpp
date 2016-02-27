@@ -14,6 +14,7 @@ using namespace core;
 class MeshTest : public NDEngine {
 
 	graphics::Shader *shader;
+	graphics::Shader *normal_debug;
 	graphics::Mesh *mesh;
 
 	float roughness = 1.0f;
@@ -26,15 +27,25 @@ class MeshTest : public NDEngine {
 		//logger::setLogLevel(logger::LogLevel::Fatal);
 		window = new Window("Hello Window", 1280, 720);
 		math::mat4 ortho = math::mat4::prespective(70.0f, 16.0f/9.0f, 0.01f, 100.0f);
-		shader = new graphics::Shader({ 
-			{graphics::Shader::Type::VERTEX, "res/pbr.vert"}, 
-			{graphics::Shader::Type::GEOMETRY, "res/pbr.geom"},
-			{graphics::Shader::Type::FRAGMENT, "res/pbr.frag"}
+		normal_debug = new graphics::Shader({ 
+			{graphics::Shader::Type::VERTEX, "res/normal.vert"}, 
+			{graphics::Shader::Type::GEOMETRY, "res/normal.geom"},
+			{graphics::Shader::Type::FRAGMENT, "res/normal.frag"}
 		});
+		shader = new graphics::Shader({
+			{ graphics::Shader::Type::VERTEX, "res/pbr.vert" },
+			{ graphics::Shader::Type::FRAGMENT, "res/pbr.frag" }
+		});
+		
 		shader->enable();
 		shader->setUniformMat4("pr_matrix", ortho);
 		shader->setUniform3f("diffuse", math::vec3(0.92, 0.20, 0.90));
-		mesh = new graphics::Mesh("C:/Users/Pedro Admin/Desktop/cube.obj");
+
+		normal_debug->enable();
+		normal_debug->setUniformMat4("pr_matrix", ortho);
+		
+		mesh = new graphics::Mesh("C:/Users/Pedro Admin/Desktop/sphere.obj");
+		
 		glClearColor(0.0f, 0.0f, 0.2f, 1.0f);
 		glEnable(GL_FRAMEBUFFER_SRGB);
 	}
@@ -51,7 +62,11 @@ class MeshTest : public NDEngine {
 		if (window->getKey(GLFW_KEY_R) == GLFW_PRESS) {
 			delete shader;
 			math::mat4 ortho = math::mat4::prespective(70.0f, 16.0f / 9.0f, 0.01f, 100.0f);
-			shader = new graphics::Shader("res/pbr.vert", "res/pbr.frag");
+			shader = new graphics::Shader({
+				{ graphics::Shader::Type::VERTEX, "res/pbr.vert" },
+				{ graphics::Shader::Type::GEOMETRY, "res/pbr.geom" },
+				{ graphics::Shader::Type::FRAGMENT, "res/pbr.frag" }
+			});
 			shader->enable();
 			shader->setUniformMat4("pr_matrix", ortho);
 			shader->setUniform3f("diffuse", math::vec3(0.92, 0.20, 0.90));
@@ -89,11 +104,21 @@ class MeshTest : public NDEngine {
 
 	void render() {
 		shader->enable();
-		math::mat4 ml = math::mat4::translation(math::vec3(0.0f, -0.1f, zpos)) * math::mat4::rotation(rotation, math::vec3(0.0, 1.0, 0.0)) * math::mat4::scale(0.03f);
+		math::mat4 ml = math::mat4::translation(math::vec3(0.0f, 0.0f, zpos)) * math::mat4::rotation(rotation, math::vec3(0.0, 1.0, 0.0)) * math::mat4::scale(0.03f);
 		shader->setUniformMat4("ml_matrix", ml);
 		shader->setUniform3f("light_pos", light_pos);
 		shader->setUniform1f("roughness", roughness);
 		shader->setUniform1f("metalness", metalness);
+
+		glBindVertexArray(mesh->getVaoID());
+		glDrawElements(GL_TRIANGLES, mesh->getVertexCount(), GL_UNSIGNED_INT, (GLvoid*)0);
+
+		normal_debug->enable();
+		normal_debug->setUniformMat4("ml_matrix", ml);
+		normal_debug->setUniform3f("light_pos", light_pos);
+		//normal_debug->setUniform1f("roughness", roughness);
+		//normal_debug->setUniform1f("metalness", metalness);
+
 		glBindVertexArray(mesh->getVaoID());
 		glDrawElements(GL_TRIANGLES, mesh->getVertexCount(), GL_UNSIGNED_INT, (GLvoid*)0);
 	}

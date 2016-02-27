@@ -19,8 +19,8 @@ namespace core {	namespace graphics {
 
 	Shader::Shader(const std::string vertPath, const std::string fragPath) {
 		m_ProgramID = glCreateProgram();
-		GLuint vertexID = load(GL_VERTEX_SHADER, vertPath);
-		GLuint fragmentID = load(GL_FRAGMENT_SHADER, fragPath);
+		GLuint vertexID = load(Type::VERTEX, vertPath);
+		GLuint fragmentID = load(Type::FRAGMENT, fragPath);
 		linkProgram({ vertexID, fragmentID });
 		cacheVariableLocations();
 	}
@@ -29,7 +29,7 @@ namespace core {	namespace graphics {
 		glDeleteProgram(m_ProgramID);
 	}
 
-	GLuint Shader::load(GLuint type, const std::string path) {
+	GLuint Shader::load(Type type, const std::string path) {
 		GLuint shaderID = glCreateShader(type);
 		std::string vertSourceString = util::readFile(path);
 		const char *source = vertSourceString.c_str();
@@ -43,7 +43,7 @@ namespace core {	namespace graphics {
 			char *error = new char[length];
 			glGetShaderInfoLog(shaderID, length, &length, error);
 			error[length - 2] = '\0'; //delete double \n at end of report
-			LOG(Error, "GLSL", "Shader compilation \n\t%s", error);
+			LOG(Error, "GLSL", "Compiling %s as %s Shader: \n\t%s", path.c_str(), getTypeString(type), error);
 			delete error;
 			glDeleteShader(shaderID);
 		} else {
@@ -69,15 +69,27 @@ namespace core {	namespace graphics {
 		GLenum type;
 		GLchar name[124];
 		GLint count;
-		glGetProgramiv(1, GL_ACTIVE_ATTRIBUTES, &count);
+		glGetProgramiv(m_ProgramID, GL_ACTIVE_ATTRIBUTES, &count);
 		for (int i = 0; i < count; ++i) {
-			glGetActiveAttrib(1, i, buffsize, &length, &size, &type, name);
+			glGetActiveAttrib(m_ProgramID, i, buffsize, &length, &size, &type, name);
 			m_AttribMap.emplace(std::string(name), glGetAttribLocation(m_ProgramID, name));
 		}
-		glGetProgramiv(1, GL_ACTIVE_UNIFORMS, &count);
+		glGetProgramiv(m_ProgramID, GL_ACTIVE_UNIFORMS, &count);
 		for (int i = 0; i < count; ++i) {
-			glGetActiveUniform(1, i, buffsize, &length, &size, &type, name);
+			glGetActiveUniform(m_ProgramID, i, buffsize, &length, &size, &type, name);
 			m_UniformMap.emplace(std::string(name), glGetUniformLocation(m_ProgramID, name));
+		}
+	}
+
+	GLchar *Shader::getTypeString(Type type) {
+		switch (type) {
+			case core::graphics::Shader::VERTEX:	return "Vertex";
+			case core::graphics::Shader::TESS_CTR:	return "Tesselation Control";
+			case core::graphics::Shader::TESS_EV:	return "Tesselation Evaluation";
+			case core::graphics::Shader::GEOMETRY:	return "Geometry";
+			case core::graphics::Shader::FRAGMENT:	return "Fragment";
+			case core::graphics::Shader::COMPUTE:	return "Compute";
+			default:								return "Unknown";
 		}
 	}
 

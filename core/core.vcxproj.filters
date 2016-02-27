@@ -44,5 +44,8 @@
     <None Include="res\pbr.frag" />
     <None Include="res\pbr.vert" />
     <None Include="res\pbr.geom" />
+    <None Include="res\normal.vert" />
+    <None Include="res\normal.geom" />
+    <None Include="res\normal.frag" />
   </ItemGroup>
 </Project>
