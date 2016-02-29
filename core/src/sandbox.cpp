@@ -7,123 +7,79 @@
 #include "graphics\shader.h"
 #include "graphics\buffers.h"
 #include "graphics\sprite_renderer.h"
+#include "graphics\mesh.h"
 
 using namespace core;
 
-class Game : public NDEngine {
+class MeshTest : public NDEngine {
 
-	util::DirectoryWatcher *watcher;
-	input::InputManager *inputx;
 	graphics::Shader *shader;
+	graphics::Mesh *mesh;
 
-	void hi() {
-		shader->disable();
-		delete shader;
-		shader = new graphics::Shader("res/basic.vert", "res/basic.frag");
-		shader->enable();
-		shader->setUniformMat4("pr_matrix", math::mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f));
-	}
-	
-	graphics::SpriteRenderer *renderer;
-	std::vector<graphics::Sprite*> sprites;
+	float roughness = 1.0f;
+	float zpos = -1.0f;
+	float rotation = 0.0f;
+	float metalness = 0.14f;
+	math::vec3 light_pos = math::vec3(0.0f, 0.0f, 0.0f);
 
 	void init() {
-		watcher = new util::DirectoryWatcher("C:/Users/Pedro Admin/Documents/visual studio 2015/Projects/NDEngine/core/res/");
 		window = new Window("Hello Window", 1280, 720);
-		inputx = new input::InputManager(state::StateManager());
-		class CommandA : public Command {
-			Window *win;
-			public:
-			CommandA(Window *win) : win(win) {}
-			void execute() { win->close(); }
-		};
-		inputx->setCommand(GLFW_KEY_ESCAPE, new CommandA(window));
-		window->setInputManager(inputx);
+		math::mat4 ortho = math::mat4::prespective(70.0f, 16.0f / 9.0f, 0.01f, 100.0f);
+		shader = new graphics::Shader({
+			{ graphics::Shader::Type::VERTEX, "res/pbr.vert" },
+			{ graphics::Shader::Type::FRAGMENT, "res/pbr.frag" }
+		});
 
-		math::mat4 ortho = math::mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
-		shader = new graphics::Shader("res/basic.vert", "res/basic.frag");
 		shader->enable();
 		shader->setUniformMat4("pr_matrix", ortho);
+		shader->setUniform3f("diffuse", math::vec3(0.92, 0.20, 0.90));
+		mesh = new graphics::Mesh("C:/Users/Pedro Admin/Desktop/sphere.obj");
 
-		glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
-
-		GLuint buffsize = 100;
-		GLsizei length;
-		GLsizei size;
-		GLenum type;
-		GLchar name[100];
-
-		GLint count;
-		glGetProgramiv(1, GL_ACTIVE_UNIFORMS, &count);
-		std::cout << count << std::endl;
-		for (int i = 0; i < count; ++i) {
-			glGetActiveUniform(1, i, buffsize, &length, &size, &type, name);
-			std::cout << "Type: " << type << " | Name: " << name << " | Size: " << size << " | Length: " << length << std::endl;
-		}
-		glGetProgramiv(1, GL_ACTIVE_ATTRIBUTES, &count);
-		for (int i = 0; i < count; ++i) {
-			glGetActiveAttrib(1, i, buffsize, &length, &size, &type, name);
-			std::cout << "Type: " << type << " | Name: " << name << " | Size: " << size << " | Length: " << length << std::endl;
-		}
-
-		//GLuint vao;
-		//glGenVertexArrays(1, &vao);
-		//glBindVertexArray(vao);
-		//GLuint vbo[2];
-		//glGenBuffers(2, vbo);
-		//glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
-		//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
-		//glBindBuffer(GL_ARRAY_BUFFER, vbo[1]);
-		//glBufferData(GL_ARRAY_BUFFER, sizeof(colors), colors, GL_STATIC_DRAW);
-		//glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
-		//glEnableVertexAttribArray(0);
-		//glEnableVertexAttribArray(1);
-		//GLuint ibo;
-		//glGenBuffers(1, &ibo);
-		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-		//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(elements), elements, GL_STATIC_DRAW);
-		//glBindVertexArray(0);
-		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-		//glBindVertexArray(vao);
-		renderer = new graphics::SpriteRenderer();
-		//for (int i = 0; i < 160; ++i) {
-		//	for (int c = 0; c < 90; ++c) {
-		//		if ((i + c) % 2 == 1)
-		//			sprites.push_back(new graphics::Sprite(math::vec3(i * 0.1f, c * 0.1f, 0.0f), math::vec2(1.0f, 1.0f), 0xFF00FFFF, shader));
-		//		else
-		//			sprites.push_back(new graphics::Sprite(math::vec3(i * 0.1f, c * 0.1f, 0.0f), math::vec2(1.0f, 1.0f), 0x8822FFFF, shader));
-		//	}
-		//}
-		sprites.push_back(new graphics::Sprite(math::vec3(0.0f, 0.0f, 0.0f), math::vec2(1.0f, 1.0f), 0x8822FFFF, shader));
-		sprites.push_back(new graphics::Sprite(math::vec3(1.0f, 1.0f, 0.0f), math::vec2(2.0f, 3.0f), 0x8822FFFF, shader));
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	void update() {
-
+		if (window->getKey(GLFW_KEY_UP) == GLFW_PRESS)
+			zpos -= 0.01f;
+		if (window->getKey(GLFW_KEY_DOWN) == GLFW_PRESS)
+			zpos += 0.01f;
+		if (window->getKey(GLFW_KEY_LEFT) == GLFW_PRESS)
+			rotation -= 1.0f;
+		if (window->getKey(GLFW_KEY_RIGHT) == GLFW_PRESS)
+			rotation += 1.0f;
+		if (window->getKey(GLFW_KEY_J) == GLFW_PRESS)
+			light_pos.x -= 0.1f;
+		if (window->getKey(GLFW_KEY_L) == GLFW_PRESS)
+			light_pos.x += 0.1f;
+		if (window->getKey(GLFW_KEY_I) == GLFW_PRESS)
+			light_pos.y += 0.1f;
+		if (window->getKey(GLFW_KEY_K) == GLFW_PRESS)
+			light_pos.y -= 0.1f;
+		if (window->getKey(GLFW_KEY_U) == GLFW_PRESS)
+			light_pos.z += 0.1f;
+		if (window->getKey(GLFW_KEY_O) == GLFW_PRESS)
+			light_pos.z -= 0.1f;
 	}
 
 	void tick() {
 		std::cout << "FPS: " << getFPS() << " | UPS: " << getUPS() << std::endl;
-		if (watcher->updated()) {
-			hi();
-		}
 	}
 
 	void render() {
-		double x, y;
-		window->getCursorPosition(&x, &y);
 		shader->enable();
-		shader->setUniform2f("light_pos", math::vec2((float)(x * 16.0f / 1280.0f), (float)(9.0f - y * 9.0f / 720.0f)));
-		for (auto sprite : sprites) {
-			renderer->submit(sprite);
-		}
-		renderer->flush();
+		math::mat4 ml = math::mat4::translation(math::vec3(0.0f, 0.0f, zpos)) * math::mat4::rotation(rotation, math::vec3(0.0, 1.0, 0.0)) * math::mat4::scale(0.03f);
+		shader->setUniformMat4("ml_matrix", ml);
+		shader->setUniform3f("light_pos", light_pos);
+		shader->setUniform1f("roughness", roughness);
+		shader->setUniform1f("metalness", metalness);
+
+		glBindVertexArray(mesh->getVaoID());
+		glDrawElements(GL_TRIANGLES, mesh->getVertexCount(), GL_UNSIGNED_INT, (GLvoid*)0);
 	}
 };
 
-//int main() {
-//	Game game;
-//	game.start();
-//	return 0;
-//}
+int main() {
+	MeshTest game;
+	game.start();
+	return 0;
+}

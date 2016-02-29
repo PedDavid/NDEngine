@@ -11,6 +11,8 @@ namespace core {
 
 	private:
 		unsigned int m_FramesPerSecond, m_UpdatesPerSecond;
+		timer::Timer timer;
+		float m_DeltaTime;
 
 	public:
 		Window *window;
@@ -37,14 +39,14 @@ namespace core {
 		//Runs as fast as possible(unless the frame rate is capped)
 		virtual void render() = 0;
 
-		inline unsigned int getFPS() { return m_FramesPerSecond; }
-		inline unsigned int getUPS() { return m_UpdatesPerSecond; }
+		inline unsigned int getFPS()	{ return m_FramesPerSecond; }
+		inline unsigned int getUPS()	{ return m_UpdatesPerSecond; }
+		inline float getDeltaTime()		{ return m_DeltaTime; }
+		inline float getCurrentTime()	{ return timer.elapsed();  }
 
 	private:
 
 		void run() {
-			timer::Timer timer;
-
 			float updateTime = 0.0f;
 			float tickTime = 0.0f;
 
@@ -53,6 +55,9 @@ namespace core {
 
 			unsigned int frames = 0;
 			unsigned int updates = 0;
+
+			float lastTime = timer.elapsed();
+			float currentTime = 0.0f;
 
 			while (!window->closed()) {
 				window->clear();
@@ -67,6 +72,10 @@ namespace core {
 				frames++;
 				window->update();
 
+				currentTime = timer.elapsed();
+				m_DeltaTime = currentTime - lastTime;
+				lastTime = currentTime;
+
 				if ((timer.elapsed() - tickTime) > tickBrake) {
 					tickTime += tickBrake;
 					m_FramesPerSecond = frames;
@@ -78,8 +87,7 @@ namespace core {
 			}
 		}
 
-		void terminate() {
+		void terminate() {	}
 
-		}
 	};
 }

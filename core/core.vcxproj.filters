@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\sandbox.cpp" />
     <ClCompile Include="src\logger\logger.cpp" />
     <ClCompile Include="src\window\window.cpp" />
     <ClCompile Include="src\input\input_manager.cpp" />
@@ -16,7 +15,11 @@
     <ClCompile Include="src\textures.cpp" />
     <ClCompile Include="src\instanced_render.cpp" />
     <ClCompile Include="src\graphics\mesh.cpp" />
-    <ClCompile Include="src\mesh_test.cpp" />
+    <ClCompile Include="src\pbr_test.cpp" />
+    <ClCompile Include="src\file_input_test.cpp" />
+    <ClCompile Include="src\sandbox.cpp" />
+    <ClCompile Include="OpenGL SuperBible\Chapter2\first_triangle.cpp" />
+    <ClCompile Include="OpenGL SuperBible\first_triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\logger\log.h" />
@@ -43,9 +46,12 @@
     <None Include="res\texture.frag" />
     <None Include="res\pbr.frag" />
     <None Include="res\pbr.vert" />
-    <None Include="res\pbr.geom" />
     <None Include="res\normal.vert" />
     <None Include="res\normal.geom" />
     <None Include="res\normal.frag" />
+    <None Include="OpenGL SuperBible\Chapter2\first_triangle.frag" />
+    <None Include="OpenGL SuperBible\Chapter2\first_triangle.vert" />
+    <None Include="OpenGL SuperBible\first_triangle.vert" />
+    <None Include="OpenGL SuperBible\first_triangle.frag" />
   </ItemGroup>
 </Project>

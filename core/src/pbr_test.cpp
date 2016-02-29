@@ -124,8 +124,8 @@ class MeshTest : public NDEngine {
 	}
 };
 
-int main() {
-	MeshTest game;
-	game.start();
-	return 0;
-}
+//int main() {
+//	MeshTest game;
+//	game.start();
+//	return 0;
+//}
