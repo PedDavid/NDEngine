@@ -39,7 +39,7 @@ class MeshTest : public NDEngine {
 		
 		shader->enable();
 		shader->setUniformMat4("pr_matrix", ortho);
-		shader->setUniform3f("diffuse", math::vec3(0.92, 0.20, 0.90));
+		shader->setUniform3f("diffuse", math::vec3(0.92f, 0.20f, 0.90f));
 
 		normal_debug->enable();
 		normal_debug->setUniformMat4("pr_matrix", ortho);
@@ -69,7 +69,7 @@ class MeshTest : public NDEngine {
 			});
 			shader->enable();
 			shader->setUniformMat4("pr_matrix", ortho);
-			shader->setUniform3f("diffuse", math::vec3(0.92, 0.20, 0.90));
+			shader->setUniform3f("diffuse", math::vec3(0.92f, 0.20f, 0.90f));
 		}
 		if (window->getKey(GLFW_KEY_W) == GLFW_PRESS)
 			metalness += 0.01f;

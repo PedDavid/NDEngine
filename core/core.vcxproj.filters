@@ -18,8 +18,7 @@
     <ClCompile Include="src\pbr_test.cpp" />
     <ClCompile Include="src\file_input_test.cpp" />
     <ClCompile Include="src\sandbox.cpp" />
-    <ClCompile Include="OpenGL SuperBible\Chapter2\first_triangle.cpp" />
-    <ClCompile Include="OpenGL SuperBible\first_triangle.cpp" />
+    <ClCompile Include="src\graphics\font.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\logger\log.h" />
@@ -38,6 +37,7 @@
     <ClInclude Include="src\graphics\sprite_renderer.h" />
     <ClInclude Include="src\graphics\sprite.h" />
     <ClInclude Include="src\graphics\mesh.h" />
+    <ClInclude Include="src\graphics\font.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\basic.vert" />
@@ -49,9 +49,5 @@
     <None Include="res\normal.vert" />
     <None Include="res\normal.geom" />
     <None Include="res\normal.frag" />
-    <None Include="OpenGL SuperBible\Chapter2\first_triangle.frag" />
-    <None Include="OpenGL SuperBible\Chapter2\first_triangle.vert" />
-    <None Include="OpenGL SuperBible\first_triangle.vert" />
-    <None Include="OpenGL SuperBible\first_triangle.frag" />
   </ItemGroup>
 </Project>

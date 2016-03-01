@@ -8,6 +8,7 @@
 #include "graphics\buffers.h"
 #include "graphics\sprite_renderer.h"
 #include "graphics\mesh.h"
+#include "graphics\font.h"
 
 using namespace core;
 
@@ -32,10 +33,11 @@ class MeshTest : public NDEngine {
 
 		shader->enable();
 		shader->setUniformMat4("pr_matrix", ortho);
-		shader->setUniform3f("diffuse", math::vec3(0.92, 0.20, 0.90));
+		shader->setUniform3f("diffuse", math::vec3(0.92f, 0.20f, 0.90f));
 		mesh = new graphics::Mesh("C:/Users/Pedro Admin/Desktop/sphere.obj");
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		graphics::Font font = graphics::Font("res/Railway.ttf", 20);
 	}
 
 	void update() {

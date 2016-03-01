@@ -71,9 +71,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
     <IntDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\Intermediates\</IntDir>
-    <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)math\include;$(SolutionDir)Dependencies\FreeImage\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)math\include;$(SolutionDir)Dependencies\FreeImage\include;$(SolutionDir)Dependencies\FreeTypeGL;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
-    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib\Win32\;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)math\bin\Debug\Win32\;$(SolutionDir)Dependencies\FreeImage\bin\x32;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\lib\Win32\;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32\;$(SolutionDir)math\bin\Debug\Win32\;$(SolutionDir)Dependencies\FreeImage\bin\x32;$(SolutionDir)Dependencies\FreeTypeGL\bin\Release\Win32;$(SolutionDir)Dependencies\FreeTypeGL\Dependencies\freetype\bin;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)bin\$(Configuration)\$(Platform)\</OutDir>
@@ -104,7 +104,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;math.lib;glew32s.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;math.lib;glew32s.lib;FreeImage.lib;FreeTypeGL.lib;freetype.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphics\font.cpp" />
     <ClCompile Include="src\graphics\mesh.cpp" />
     <ClCompile Include="src\pbr_test.cpp" />
     <ClCompile Include="src\sandbox.cpp" />
@@ -170,6 +171,7 @@
   <ItemGroup>
     <ClInclude Include="include\ndengine.h" />
     <ClInclude Include="src\graphics\buffers.h" />
+    <ClInclude Include="src\graphics\font.h" />
     <ClInclude Include="src\graphics\mesh.h" />
     <ClInclude Include="src\graphics\shader.h" />
     <ClInclude Include="src\graphics\sprite.h" />

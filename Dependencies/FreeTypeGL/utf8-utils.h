@@ -1,8 +1,8 @@
-/* ============================================================================
+/* =========================================================================
  * Freetype GL - A C OpenGL Freetype engine
  * Platform:    Any
  * WWW:         https://github.com/rougier/freetype-gl
- * ----------------------------------------------------------------------------
+ * -------------------------------------------------------------------------
  * Copyright 2011,2012 Nicolas P. Rougier. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,28 +29,67 @@
  * The views and conclusions contained in the software and documentation are
  * those of the authors and should not be interpreted as representing official
  * policies, either expressed or implied, of Nicolas P. Rougier.
- * ============================================================================
- */
-#ifndef __OPEN_GL_H__
-#define __OPEN_GL_H__
+ * ========================================================================= */
+#ifndef __UTF8_UTILS_H__
+#define __UTF8_UTILS_H__
 
-#if defined(__APPLE__)
-#   include "TargetConditionals.h"
-#   if TARGET_OS_SIMULATOR || TARGET_OS_IPHONE
-#     if defined(FREETYPE_GL_ES_VERSION_3_0)
-#       include <OpenGLES/ES3/gl.h>
-#     else
-#       include <OpenGLES/ES2/gl.h>
-#     endif
-#   else
-#     include <OpenGL/gl.h>
-#   endif
-#elif defined(_WIN32) || defined(_WIN64)
-#  include <glew.h>
-#  include <wglew.h>
-#else
-#  include <GL/glew.h>
-#  include <GL/gl.h>
+#include <stdlib.h>
+#include <stdint.h>
+
+#ifdef __cplusplus
+extern "C" {
+
+namespace ftgl {
 #endif
 
-#endif /* OPEN_GL_H */
+/**
+ * @file    utf8-utils.h
+ * @author  Marcel Metz <mmetz@adrian-broher.net>
+ *
+ * defgroup utf8-utils UTF-8 Utilities
+ *
+ * @{
+ */
+
+  /**
+   * Returns the size in bytes of a given UTF-8 encoded character surrogate
+   *
+   * @param character  An UTF-8 encoded character
+   *
+   * @return  The length of the surrogate in bytes.
+   */
+  size_t
+  utf8_surrogate_len( const char* character );
+
+  /**
+   * Return the length of the given UTF-8 encoded and
+   * NULL terminated string.
+   *
+   * @param string  An UTF-8 encoded string
+   *
+   * @return  The length of the string in characters.
+   */
+  size_t
+  utf8_strlen( const char* string );
+
+  /**
+   * Converts a given UTF-8 encoded character to its UTF-32 LE equivalent
+   *
+   * @param character  An UTF-8 encoded character
+   *
+   * @return  The equivalent of the given character in UTF-32 LE
+   *          encoding.
+   */
+  uint32_t
+  utf8_to_utf32( const char * character );
+
+/**
+ * @}
+ */
+
+#ifdef __cplusplus
+}
+}
+#endif
+
+#endif /* #define __UTF8_UTILS_H__ */

@@ -315,7 +315,7 @@ texture_font_new_from_file(texture_atlas_t *atlas, const float pt_size,
     self->size  = pt_size;
 
     self->location = TEXTURE_FONT_FILE;
-    self->filename = strdup(filename);
+    self->filename = _strdup(filename);
 
     if (texture_font_init(self)) {
         texture_font_delete(self);
@@ -413,7 +413,7 @@ texture_font_load_glyphs( texture_font_t * self,
     FT_Library library;
     FT_Error error;
     FT_Face face;
-    FT_Glyph ft_glyph;
+	FT_Glyph ft_glyph = NULL;
     FT_GlyphSlot slot;
     FT_Bitmap ft_bitmap;
 
