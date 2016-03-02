@@ -23,6 +23,11 @@ class MeshTest : public NDEngine {
 	float metalness = 0.14f;
 	math::vec3 light_pos = math::vec3(0.0f, 0.0f, 0.0f);
 
+	const float *axes;
+	int axesCount;
+	const unsigned char *buttons;
+	int buttonCount;
+
 	void init() {
 		window = new Window("Hello Window", 1280, 720);
 		math::mat4 ortho = math::mat4::prespective(70.0f, 16.0f / 9.0f, 0.01f, 100.0f);
@@ -38,6 +43,10 @@ class MeshTest : public NDEngine {
 
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		graphics::Font font = graphics::Font("res/Railway.ttf", 20);
+		std::cout << glfwGetJoystickName(GLFW_JOYSTICK_1) << std::endl;
+		axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);
+		buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+		std::cout << axesCount << " "  << buttonCount << std::endl;
 	}
 
 	void update() {
@@ -65,6 +74,7 @@ class MeshTest : public NDEngine {
 
 	void tick() {
 		std::cout << "FPS: " << getFPS() << " | UPS: " << getUPS() << std::endl;
+		printf("Axes: %f %f %f %f | Buttons: %u %u %u %u %u %u \n", axes[0], axes[1], axes[2], axes[3], buttons[0], buttons[1], buttons[2], buttons[3], buttons[4], buttons[5]);
 	}
 
 	void render() {
@@ -80,8 +90,8 @@ class MeshTest : public NDEngine {
 	}
 };
 
-int main() {
-	MeshTest game;
-	game.start();
-	return 0;
-}
+//int main() {
+//	MeshTest game;
+//	game.start();
+//	return 0;
+//}

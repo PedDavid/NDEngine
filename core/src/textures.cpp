@@ -14,36 +14,45 @@
 
 using namespace core;
 
+BYTE *data(std::string filePath, size_t *width, size_t *height, size_t *bpp) {
+	FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+	FIBITMAP *dib(0);
+	BYTE *bits(0);
+
+	const char *cFilePath = filePath.c_str();
+	fif = FreeImage_GetFileType(cFilePath, 0);
+	if (fif == FIF_UNKNOWN)
+		fif = FreeImage_GetFIFFromFilename(cFilePath);
+	ASSERT(fif != FIF_UNKNOWN);
+	if (FreeImage_FIFSupportsReading(fif))
+		dib = FreeImage_Load(fif, cFilePath);
+	ASSERT(dib);
+
+	bits = FreeImage_GetBits(dib);
+	*width = FreeImage_GetWidth(dib);
+	*height = FreeImage_GetHeight(dib);
+	*bpp = FreeImage_GetBPP(dib);
+
+	ASSERT(bits != 0 && width != 0 && height != 0);
+
+	size_t size = *width * *height * (*bpp / 8);
+	BYTE *result = new BYTE[size];
+	memcpy(result, bits, size);
+	FreeImage_Unload(dib);
+	return result;
+}
+
+
 class Game : public NDEngine {
 
+	int index = 0;
 	graphics::Shader *shader;
-
-	struct a {
-		int x, y, z;
-	};
 
 	void init() {
 		window = new Window("Hello Window", 1280, 720);
-		const char *filename = "res/test.png";
-		FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-		FIBITMAP *dib(0);
-		BYTE *bits(0);
-		unsigned int width(0), height(0);
-		fif = FreeImage_GetFileType(filename, 0);
-		if (fif == FIF_UNKNOWN)
-			fif = FreeImage_GetFIFFromFilename(filename);
-		ASSERT(fif != FIF_UNKNOWN);
-		if (FreeImage_FIFSupportsReading(fif))
-			dib = FreeImage_Load(fif, filename);
-		ASSERT(dib);
-
-		int bpp = FreeImage_GetBPP(dib);
-		bits = FreeImage_GetBits(dib);
-		width = FreeImage_GetWidth(dib);
-		height = FreeImage_GetHeight(dib);
-		ASSERT(bits != 0 && width != 0 && height != 0);
-
-		//FreeImage_Unload(dib);
+		size_t width, height, bpp;
+		BYTE *bits = data("res/test.png", &width, &height, &bpp);
+		BYTE *bits1 = data("res/test1.png", &width, &height, &bpp);
 
 		shader = new graphics::Shader("res/texture.vert", "res/texture.frag");
 		shader->enable();
@@ -92,10 +101,15 @@ class Game : public NDEngine {
 
 		GLuint texture;
 		glGenTextures(1, &texture);
-		glBindTexture(GL_TEXTURE_2D, texture);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, bits);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glBindTexture(GL_TEXTURE_2D_ARRAY, texture);
+		glTextureStorage3D(texture, 1, GL_RGB8, width, height, 2);
+		glTextureSubImage3D(texture, 0, 0, 0, 0, width, height, 1, GL_BGR, GL_UNSIGNED_BYTE, bits);
+		glTextureSubImage3D(texture, 0, 0, 0, 1, width, height, 1, GL_BGR, GL_UNSIGNED_BYTE, bits1);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+		delete bits;
+		delete bits1;
 	}
 
 	void update() {
@@ -104,16 +118,26 @@ class Game : public NDEngine {
 
 	void tick() {
 		std::cout << "FPS: " << getFPS() << " | UPS: " << getUPS() << std::endl;
+		if (window->getKey(GLFW_KEY_UP) == GLFW_PRESS) {
+			index++;
+		}
+		if (window->getKey(GLFW_KEY_DOWN) == GLFW_PRESS) {
+			index--;
+		}
+		if (index < 0) index = 0;
+		if (index > 1) index = 1;
 	}
 
+	
 	void render() {
 		shader->enable();
+		shader->setUniform1i("index", index);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)0);
 	}
 };
 
-//int main() {
-//	Game game;
-//	game.start();
-//	return 0;
-//}
+int main() {
+	Game game;
+	game.start();
+	return 0;
+}
