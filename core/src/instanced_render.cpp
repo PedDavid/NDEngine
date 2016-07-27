@@ -1,8 +1,7 @@
-#include "..\include\NDEngine.h"
+#include "NDEngine.h"
 #include <iostream>
 #include "logger\log.h"
 #include "util\file.h"
-#include "util\directory.h"
 
 #include "graphics\shader.h"
 #include "graphics\buffers.h"
@@ -12,14 +11,16 @@ using namespace core;
 
 class InstancedRenderTest : public NDEngine {
 
-	input::InputManager *inputx;
 	graphics::Shader *shader;
 
 	void init() {
 		window = new Window("Hello Window", 1280, 720);
 
 		math::mat4 ortho = math::mat4::orthographic(0.0f, 16.0f, 0.0f, 9.0f, -1.0f, 1.0f);
-		shader = new graphics::Shader("res/simple.vert", "res/simple.frag");
+		shader = new graphics::Shader({
+			{ graphics::ShaderType::VERTEX, "res/simple.vert" },
+			{ graphics::ShaderType::FRAGMENT, "res/simple.frag"} 
+		});
 		shader->enable();
 		shader->setUniformMat4("pr_matrix", ortho);
 		glClearColor(0.0f, 0.0f, 0.1f, 1.0f);

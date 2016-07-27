@@ -6,7 +6,7 @@
 
 namespace core {	namespace graphics {
 
-	Shader::Shader(std::initializer_list<std::pair<const Type, const std::string>> list) {
+	Shader::Shader(std::initializer_list<std::pair<const ShaderType, const char *>> list) {
 		std::vector<GLuint> shaderIDs;
 		m_ProgramID = glCreateProgram();
 		for (auto pair : list) {
@@ -17,19 +17,11 @@ namespace core {	namespace graphics {
 		cacheVariableLocations();
 	}
 
-	Shader::Shader(const std::string vertPath, const std::string fragPath) {
-		m_ProgramID = glCreateProgram();
-		GLuint vertexID = load(Type::VERTEX, vertPath);
-		GLuint fragmentID = load(Type::FRAGMENT, fragPath);
-		linkProgram({ vertexID, fragmentID });
-		cacheVariableLocations();
-	}
-
 	Shader::~Shader() {
 		glDeleteProgram(m_ProgramID);
 	}
 
-	GLuint Shader::load(Type type, const std::string path) {
+	GLuint Shader::load(ShaderType type, const char *path) {
 		GLuint shaderID = glCreateShader(type);
 		std::string vertSourceString = util::readFile(path);
 		const char *source = vertSourceString.c_str();
@@ -43,11 +35,11 @@ namespace core {	namespace graphics {
 			char *error = new char[length];
 			glGetShaderInfoLog(shaderID, length, &length, error);
 			error[length - 2] = '\0'; //delete double \n at end of report
-			LOG(Error, "GLSL", "Compiling %s as %s Shader: \n\t%s", path.c_str(), getTypeString(type), error);
+			LOG(Error, "GLSL", "Compiling %s as %s Shader: \n\t%s", path, getTypeString(type), error);
 			delete error;
 			glDeleteShader(shaderID);
 		} else {
-			LOG(Success, "Shader", "ID: %d | Path: %s", shaderID, path.c_str());
+			LOG(Success, "Shader", "ID: %d | Path: %s", shaderID, path);
 			glAttachShader(m_ProgramID, shaderID);
 		}
 		return shaderID;
@@ -81,15 +73,15 @@ namespace core {	namespace graphics {
 		}
 	}
 
-	GLchar *Shader::getTypeString(Type type) {
+	GLchar *Shader::getTypeString(ShaderType type) {
 		switch (type) {
-			case core::graphics::Shader::VERTEX:	return "Vertex";
-			case core::graphics::Shader::TESS_CTR:	return "Tesselation Control";
-			case core::graphics::Shader::TESS_EV:	return "Tesselation Evaluation";
-			case core::graphics::Shader::GEOMETRY:	return "Geometry";
-			case core::graphics::Shader::FRAGMENT:	return "Fragment";
-			case core::graphics::Shader::COMPUTE:	return "Compute";
-			default:								return "Unknown";
+			case core::graphics::ShaderType::VERTEX:	return "Vertex";
+			case core::graphics::ShaderType::TESS_CTR:	return "Tesselation Control";
+			case core::graphics::ShaderType::TESS_EV:	return "Tesselation Evaluation";
+			case core::graphics::ShaderType::GEOMETRY:	return "Geometry";
+			case core::graphics::ShaderType::FRAGMENT:	return "Fragment";
+			case core::graphics::ShaderType::COMPUTE:	return "Compute";
+			default:									return "Unknown";
 		}
 	}
 

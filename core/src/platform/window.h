@@ -3,14 +3,14 @@
 #include <glew.h>
 #include <glfw3.h>
 
-#include "../input/input_manager.h"
+#include "input.h"
 
 namespace core {
 	class Window {
 
 	private:
 		GLFWwindow *m_Window;
-		input::InputManager *m_InputHandle;
+		Input *input;
 
 	public:
 		Window(const char *title, size_t width, size_t height);
@@ -24,14 +24,11 @@ namespace core {
 
 		bool closed() const;
 
-		void setInputManager(input::InputManager *handle);
-
 		void getCursorPosition(double *x, double *y);
 		int getMouseButton(int key);
 		int getKey(int key);
 
 	private:
-		friend class WindowManager;
 		friend static void window_resize(GLFWwindow *window, int width, int heigth);
 		friend static void cursor_position_callback(GLFWwindow *window, double xpos, double ypos);
 		friend static void mouse_button_callback(GLFWwindow *window, int button, int action, int mods);

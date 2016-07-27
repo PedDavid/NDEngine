@@ -2,6 +2,8 @@
 
 #include "logger.h"
 
+#include <cstring>
+
 #define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
 
 #define LOG(level, channel, message, ...) core::logger::log_message(core::logger::LogLevel::level,  \

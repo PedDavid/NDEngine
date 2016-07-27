@@ -1,8 +1,7 @@
-#include "..\include\NDEngine.h"
+#include "NDEngine.h"
 #include <iostream>
 #include "logger\log.h"
 #include "util\file.h"
-#include "util\directory.h"
 
 #include "graphics\shader.h"
 #include "graphics\buffers.h"
@@ -28,13 +27,13 @@ class MeshTest : public NDEngine {
 		window = new Window("Hello Window", 1280, 720);
 		math::mat4 ortho = math::mat4::prespective(70.0f, 16.0f/9.0f, 0.01f, 100.0f);
 		normal_debug = new graphics::Shader({ 
-			{graphics::Shader::Type::VERTEX, "res/normal.vert"}, 
-			{graphics::Shader::Type::GEOMETRY, "res/normal.geom"},
-			{graphics::Shader::Type::FRAGMENT, "res/normal.frag"}
+			{graphics::ShaderType::VERTEX, "res/normal.vert"}, 
+			{graphics::ShaderType::GEOMETRY, "res/normal.geom"},
+			{graphics::ShaderType::FRAGMENT, "res/normal.frag"}
 		});
 		shader = new graphics::Shader({
-			{ graphics::Shader::Type::VERTEX, "res/pbr.vert" },
-			{ graphics::Shader::Type::FRAGMENT, "res/pbr.frag" }
+			{ graphics::ShaderType::VERTEX, "res/pbr.vert" },
+			{ graphics::ShaderType::FRAGMENT, "res/pbr.frag" }
 		});
 		
 		shader->enable();
@@ -63,9 +62,9 @@ class MeshTest : public NDEngine {
 			delete shader;
 			math::mat4 ortho = math::mat4::prespective(70.0f, 16.0f / 9.0f, 0.01f, 100.0f);
 			shader = new graphics::Shader({
-				{ graphics::Shader::Type::VERTEX, "res/pbr.vert" },
-				{ graphics::Shader::Type::GEOMETRY, "res/pbr.geom" },
-				{ graphics::Shader::Type::FRAGMENT, "res/pbr.frag" }
+				{ graphics::ShaderType::VERTEX, "res/pbr.vert" },
+				{ graphics::ShaderType::GEOMETRY, "res/pbr.geom" },
+				{ graphics::ShaderType::FRAGMENT, "res/pbr.frag" }
 			});
 			shader->enable();
 			shader->setUniformMat4("pr_matrix", ortho);

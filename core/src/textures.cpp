@@ -1,8 +1,7 @@
-#include "..\include\NDEngine.h"
+#include "NDEngine.h"
 #include <iostream>
 #include "logger\log.h"
 #include "util\file.h"
-#include "util\directory.h"
 
 #include "graphics\shader.h"
 #include "graphics\buffers.h"
@@ -54,7 +53,10 @@ class Game : public NDEngine {
 		BYTE *bits = data("res/test.png", &width, &height, &bpp);
 		BYTE *bits1 = data("res/test1.png", &width, &height, &bpp);
 
-		shader = new graphics::Shader("res/texture.vert", "res/texture.frag");
+		shader = new graphics::Shader({
+			{ graphics::ShaderType::VERTEX, "res/texture.vert" }, 
+			{ graphics::ShaderType::FRAGMENT, "res/texture.frag" }
+		});
 		shader->enable();
 
 		GLfloat vertices[] = {
@@ -108,8 +110,18 @@ class Game : public NDEngine {
 		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D_ARRAY, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
+		GLuint64 handle = glGetTextureHandleARB(texture);
+		std::cout << std::boolalpha << (bool)glIsTextureHandleResidentARB(handle) << std::endl;
+		glMakeTextureHandleResidentARB(handle);
+
+		GLuint loc = glGetUniformLocation(1, "tex"); //wtf?
+		glUniformHandleui64ARB(loc, handle);
+		std::cout << std::boolalpha << (bool)glIsTextureHandleResidentARB(handle) << " " << loc << std::endl;
+		glBindTexture(GL_TEXTURE_2D_ARRAY, 0);
+
 		delete bits;
 		delete bits1;
+		
 	}
 
 	void update() {
@@ -136,8 +148,8 @@ class Game : public NDEngine {
 	}
 };
 
-int main() {
-	Game game;
-	game.start();
-	return 0;
-}
+//int main() {
+//	Game game;
+//	game.start();
+//	return 0;
+//}

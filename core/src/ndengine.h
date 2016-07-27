@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../src/window/window_manager.h"
+#include "../src/platform/window.h"
 #include "../src/util/timer.h"
 
 #include <math/mat4.h>

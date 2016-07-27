@@ -2,13 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\logger\logger.cpp" />
-    <ClCompile Include="src\window\window.cpp" />
-    <ClCompile Include="src\input\input_manager.cpp" />
-    <ClCompile Include="src\window\window_manager.cpp" />
     <ClCompile Include="src\util\file.cpp" />
     <ClCompile Include="src\graphics\shader.cpp" />
     <ClCompile Include="src\logger\log.cpp" />
-    <ClCompile Include="src\util\directory.cpp" />
     <ClCompile Include="src\graphics\buffers.cpp" />
     <ClCompile Include="src\graphics\sprite_renderer.cpp" />
     <ClCompile Include="src\graphics\sprite.cpp" />
@@ -16,28 +12,30 @@
     <ClCompile Include="src\instanced_render.cpp" />
     <ClCompile Include="src\graphics\mesh.cpp" />
     <ClCompile Include="src\pbr_test.cpp" />
-    <ClCompile Include="src\file_input_test.cpp" />
     <ClCompile Include="src\sandbox.cpp" />
     <ClCompile Include="src\graphics\font.cpp" />
+    <ClCompile Include="src\platform\window.cpp" />
+    <ClCompile Include="src\platform\input.cpp" />
+    <ClCompile Include="src\graphics\renderer\renderer_2d.cpp" />
+    <ClCompile Include="src\new_interface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\logger\log.h" />
     <ClInclude Include="src\logger\logger.h" />
     <ClInclude Include="src\util\timer.h" />
-    <ClInclude Include="src\window\window.h" />
-    <ClInclude Include="src\input\input_manager.h" />
-    <ClInclude Include="src\state\state_manager.h" />
-    <ClInclude Include="src\input\command.h" />
-    <ClInclude Include="include\ndengine.h" />
-    <ClInclude Include="src\window\window_manager.h" />
     <ClInclude Include="src\util\file.h" />
     <ClInclude Include="src\graphics\shader.h" />
-    <ClInclude Include="src\util\directory.h" />
     <ClInclude Include="src\graphics\buffers.h" />
     <ClInclude Include="src\graphics\sprite_renderer.h" />
     <ClInclude Include="src\graphics\sprite.h" />
     <ClInclude Include="src\graphics\mesh.h" />
     <ClInclude Include="src\graphics\font.h" />
+    <ClInclude Include="src\ndengine.h" />
+    <ClInclude Include="src\platform\window.h" />
+    <ClInclude Include="src\platform\input.h" />
+    <ClInclude Include="src\state\state_manager.h" />
+    <ClInclude Include="src\graphics\renderer\renderer_2d.h" />
+    <ClInclude Include="src\graphics\renderable\renderable_2d.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\basic.vert" />

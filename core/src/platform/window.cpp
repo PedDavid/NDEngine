@@ -1,4 +1,5 @@
 #include "window.h"
+
 #include "..\logger\log.h"
 
 namespace core {
@@ -71,10 +72,6 @@ namespace core {
 		glfwSwapInterval(vSync);
 	}
 
-	void Window::setInputManager(input::InputManager *handle) {
-		m_InputHandle = handle;
-	}
-
 	void Window::getCursorPosition(double *x, double *y) {
 		glfwGetCursorPos(m_Window, x, y);
 	}
@@ -89,35 +86,35 @@ namespace core {
 
 	static void window_resize(GLFWwindow* window, int width, int heigth) {
 		Window *win = (Window*)glfwGetWindowUserPointer(window);
-		if (win->m_InputHandle) {
+		if (win->input) {
 		}
 	}
 
 	static void cursor_position_callback(GLFWwindow *window, double xpos, double ypos) {
 		Window *win = (Window*)glfwGetWindowUserPointer(window);
-		if (win->m_InputHandle) {
-			win->m_InputHandle->cursorPositionCallback(xpos, ypos);
+		if (win->input) {
+			win->input->cursorPositionCallback(xpos, ypos);
 		}
 	}
 
 	static void mouse_button_callback(GLFWwindow *window, int button, int action, int mods) {
 		Window *win = (Window*)glfwGetWindowUserPointer(window);
-		if (win->m_InputHandle) {
-			win->m_InputHandle->mouseButtonCallback(button, action, mods);
+		if (win->input) {
+			win->input->mouseButtonCallback(button, action, mods);
 		}
 	}
 
 	static void mouse_scroll_callback(GLFWwindow *window, double xoffset, double yoffset) {
 		Window *win = (Window*)glfwGetWindowUserPointer(window);
-		if (win->m_InputHandle) {
-			win->m_InputHandle->mouseScrollCallback(xoffset, yoffset);
+		if (win->input) {
+			win->input->mouseScrollCallback(xoffset, yoffset);
 		}
 	}
 
 	static void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods) {
 		Window *win = (Window*)glfwGetWindowUserPointer(window);
-		if (win->m_InputHandle) {
-			win->m_InputHandle->keyCallback(key, scancode, action, mods);
+		if (win->input) {
+			win->input->keyCallback(key, scancode, action, mods);
 		}
 	}
 

@@ -10,34 +10,31 @@
 
 namespace core {	namespace graphics {
 
-	class Shader {
-	
-	public: 
-		enum Type {
-			VERTEX		=	GL_VERTEX_SHADER,			//.vert
-			TESS_CTR	=	GL_TESS_CONTROL_SHADER,		//.tesc
-			TESS_EV		=	GL_TESS_EVALUATION_SHADER,	//.tese
-			GEOMETRY	=	GL_GEOMETRY_SHADER,			//.geom
-			FRAGMENT	=	GL_FRAGMENT_SHADER,			//.frag
-			COMPUTE		=	GL_COMPUTE_SHADER			//.comp
-		};
+	enum ShaderType {
+		VERTEX = GL_VERTEX_SHADER,				//.vert
+		TESS_CTR = GL_TESS_CONTROL_SHADER,		//.tesc
+		TESS_EV = GL_TESS_EVALUATION_SHADER,	//.tese
+		GEOMETRY = GL_GEOMETRY_SHADER,			//.geom
+		FRAGMENT = GL_FRAGMENT_SHADER,			//.frag
+		COMPUTE = GL_COMPUTE_SHADER				//.comp
+	};
 
-	private:
+	class Shader {
+
 		GLuint m_ProgramID;
 
 		std::unordered_map<std::string, const GLint> m_AttribMap;
 		std::unordered_map<std::string, const GLint> m_UniformMap;
 
 	public:
-		Shader(std::initializer_list<std::pair<const Type, const std::string>> list);
-		Shader(const std::string vertPath, const std::string fragPath);
+		Shader(std::initializer_list<std::pair<const ShaderType, const char *>> list);
 		~Shader();
 
 	private:
-		GLuint load(Type type, const std::string path);
+		GLuint load(ShaderType type, const char *path);
 		void linkProgram(std::vector<GLuint> shaderIDs);
 		void cacheVariableLocations();
-		GLchar *getTypeString(Type type);
+		GLchar *getTypeString(ShaderType type);
 		GLint getAttribLocation(const GLchar *name);
 		GLint getUniformLocation(const GLchar *name);
 		

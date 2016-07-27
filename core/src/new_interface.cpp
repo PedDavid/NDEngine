@@ -11,7 +11,7 @@
 
 using namespace core;
 
-class MeshTest : public NDEngine {
+class Test : public NDEngine {
 
 	graphics::Shader *shader;
 	graphics::Mesh *mesh;
@@ -84,8 +84,8 @@ class MeshTest : public NDEngine {
 	}
 };
 
-//int main() {
-//	MeshTest game;
-//	game.start();
-//	return 0;
-//}
+int main() {
+	Test game;
+	game.start();
+	return 0;
+}
